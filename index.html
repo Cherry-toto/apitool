@@ -243,6 +243,136 @@
         </div>
     </div>
 
+    <style>
+        /* 弹窗样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border: none;
+            border-radius: 8px;
+            width: 60%;
+            max-width: 600px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .close {
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .modal-body {
+            margin-bottom: 20px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .modal-textarea {
+            width: 100%;
+            height: 200px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 14px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+
+        .modal-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-confirm {
+            background: #4a6cf7;
+            color: white;
+        }
+
+        .btn-cancel {
+            background: #f8f9fa;
+            color: #6c757d;
+            border: 1px solid #ddd;
+        }
+    </style>
+
+    <!-- 导入参数弹窗 -->
+    <div id="importParamsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">导入参数</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>请粘贴参数，每行一个key:value格式：</p>
+                <p style="font-size: 12px; color: #666; margin: 5px 0;">例如：<br>name:John<br>age:30</p>
+                <textarea id="paramsTextarea" class="modal-textarea" placeholder="在此粘贴参数，每行一个key:value格式"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn btn-cancel" id="cancelParamsBtn">取消</button>
+                <button class="modal-btn btn-confirm" id="confirmParamsBtn">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 导入请求头弹窗 -->
+    <div id="importHeadersModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">导入请求头</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>请粘贴请求头，每行一个key:value格式：</p>
+                <p style="font-size: 12px; color: #666; margin: 5px 0;">例如：<br>Authorization:Bearer token<br>Content-Type:application/json</p>
+                <textarea id="headersTextarea" class="modal-textarea" placeholder="在此粘贴请求头，每行一个key:value格式"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn btn-cancel" id="cancelHeadersBtn">取消</button>
+                <button class="modal-btn btn-confirm" id="confirmHeadersBtn">确定</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // 获取DOM元素
         const methodSelect = document.getElementById('method');
@@ -260,6 +390,20 @@
         const addHeaderBtn = document.getElementById('add-header');
         const importParamsBtn = document.getElementById('import-params');
         const importHeadersBtn = document.getElementById('import-headers');
+
+        // 获取弹窗相关元素
+        const importParamsModal = document.getElementById('importParamsModal');
+        const importHeadersModal = document.getElementById('importHeadersModal');
+        const paramsTextarea = document.getElementById('paramsTextarea');
+        const headersTextarea = document.getElementById('headersTextarea');
+        const confirmParamsBtn = document.getElementById('confirmParamsBtn');
+        const confirmHeadersBtn = document.getElementById('confirmHeadersBtn');
+        const cancelParamsBtn = document.getElementById('cancelParamsBtn');
+        const cancelHeadersBtn = document.getElementById('cancelHeadersBtn');
+
+        // 关闭按钮元素
+        const closeParamsSpan = importParamsModal.querySelector('.close');
+        const closeHeadersSpan = importHeadersModal.querySelector('.close');
 
         // 添加参数行
         addParamBtn.addEventListener('click', () => {
@@ -285,59 +429,106 @@
             headersContainer.appendChild(headerRow);
         });
 
-        // 导入参数功能
-        importParamsBtn.addEventListener('click', () => {
-            const input = prompt('请粘贴参数，每行一个key:value格式：\n例如：\nname:John\nage:30');
-            if (input) {
-                const lines = input.split('\n');
-                lines.forEach(line => {
-                    line = line.trim();
-                    if (line.includes(':')) {
-                        const separatorIndex = line.indexOf(':');
-                        const key = line.substring(0, separatorIndex).trim();
-                        const value = line.substring(separatorIndex + 1).trim();
-                        
-                        if (key) {
-                            const paramRow = document.createElement('div');
-                            paramRow.className = 'param-row';
-                            paramRow.innerHTML = `
-                                <input type="text" placeholder="参数名" value="${key}">
-                                <input type="text" placeholder="参数值" value="${value}">
-                                <button class="btn-remove" onclick="this.parentElement.remove()">-</button>
-                            `;
-                            paramsContainer.appendChild(paramRow);
-                        }
-                    }
-                });
-            }
-        });
+        // 打开导入参数弹窗
+        importParamsBtn.onclick = () => {
+            paramsTextarea.value = '';
+            importParamsModal.style.display = 'block';
+        };
 
-        // 导入请求头功能
-        importHeadersBtn.addEventListener('click', () => {
-            const input = prompt('请粘贴请求头，每行一个key:value格式：\n例如：\nAuthorization:Bearer token\nContent-Type:application/json');
-            if (input) {
-                const lines = input.split('\n');
-                lines.forEach(line => {
-                    line = line.trim();
-                    if (line.includes(':')) {
-                        const separatorIndex = line.indexOf(':');
-                        const key = line.substring(0, separatorIndex).trim();
-                        const value = line.substring(separatorIndex + 1).trim();
-                        
-                        if (key) {
-                            const headerRow = document.createElement('div');
-                            headerRow.className = 'header-row';
-                            headerRow.innerHTML = `
-                                <input type="text" placeholder="头部名称" value="${key}">
-                                <input type="text" placeholder="头部值" value="${value}">
-                                <button class="btn-remove" onclick="this.parentElement.remove()">-</button>
-                            `;
-                            headersContainer.appendChild(headerRow);
-                        }
+        // 打开导入请求头弹窗
+        importHeadersBtn.onclick = () => {
+            headersTextarea.value = '';
+            importHeadersModal.style.display = 'block';
+        };
+
+        // 关闭弹窗函数
+        function closeModal(modal) {
+            modal.style.display = 'none';
+        }
+
+        // 解析并添加参数
+        function addParamsFromText(text) {
+            const lines = text.split('\n');
+            lines.forEach(line => {
+                line = line.trim();
+                if (line.includes(':')) {
+                    const separatorIndex = line.indexOf(':');
+                    const key = line.substring(0, separatorIndex).trim();
+                    const value = line.substring(separatorIndex + 1).trim();
+                    
+                    if (key) {
+                        const paramRow = document.createElement('div');
+                        paramRow.className = 'param-row';
+                        paramRow.innerHTML = `
+                            <input type="text" placeholder="参数名" value="${key}">
+                            <input type="text" placeholder="参数值" value="${value}">
+                            <button class="btn-remove" onclick="this.parentElement.remove()">-</button>
+                        `;
+                        paramsContainer.appendChild(paramRow);
                     }
-                });
+                }
+            });
+        }
+
+        // 解析并添加请求头
+        function addHeadersFromText(text) {
+            const lines = text.split('\n');
+            lines.forEach(line => {
+                line = line.trim();
+                if (line.includes(':')) {
+                    const separatorIndex = line.indexOf(':');
+                    const key = line.substring(0, separatorIndex).trim();
+                    const value = line.substring(separatorIndex + 1).trim();
+                    
+                    if (key) {
+                        const headerRow = document.createElement('div');
+                        headerRow.className = 'header-row';
+                        headerRow.innerHTML = `
+                            <input type="text" placeholder="头部名称" value="${key}">
+                            <input type="text" placeholder="头部值" value="${value}">
+                            <button class="btn-remove" onclick="this.parentElement.remove()">-</button>
+                        `;
+                        headersContainer.appendChild(headerRow);
+                    }
+                }
+            });
+        }
+
+        // 导入参数确认按钮事件
+        confirmParamsBtn.onclick = () => {
+            const text = paramsTextarea.value.trim();
+            if (text) {
+                addParamsFromText(text);
             }
-        });
+            closeModal(importParamsModal);
+        };
+
+        // 导入请求头确认按钮事件
+        confirmHeadersBtn.onclick = () => {
+            const text = headersTextarea.value.trim();
+            if (text) {
+                addHeadersFromText(text);
+            }
+            closeModal(importHeadersModal);
+        };
+
+        // 关闭参数弹窗事件
+        closeParamsSpan.onclick = () => closeModal(importParamsModal);
+        cancelParamsBtn.onclick = () => closeModal(importParamsModal);
+
+        // 关闭请求头弹窗事件
+        closeHeadersSpan.onclick = () => closeModal(importHeadersModal);
+        cancelHeadersBtn.onclick = () => closeModal(importHeadersModal);
+
+        // 点击弹窗外部关闭弹窗
+        window.onclick = (event) => {
+            if (event.target === importParamsModal) {
+                closeModal(importParamsModal);
+            }
+            if (event.target === importHeadersModal) {
+                closeModal(importHeadersModal);
+            }
+        };
 
         // 构建带参数的URL
         function buildUrlWithParams(baseUrl) {
