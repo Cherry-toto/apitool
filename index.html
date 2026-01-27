@@ -3,7 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API 调试工具</title>
+    <title data-i18n="page_title">API调试工具 - 在线接口测试平台 | 免费API调试助手</title>
+    <meta name="description" content="" data-i18n="page_description" data-i18n-attr="content">
+    <meta name="keywords" content="" data-i18n="page_keywords" data-i18n-attr="content">
+    <meta name="author" content="API Tool">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta property="og:title" content="" data-i18n="og_title" data-i18n-attr="content">
+    <meta property="og:description" content="" data-i18n="og_description" data-i18n-attr="content">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/api-tool">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="" data-i18n="twitter_title" data-i18n-attr="content">
+    <meta name="twitter:description" content="" data-i18n="twitter_description" data-i18n-attr="content">
+    <link rel="canonical" href="https://your-domain.com/api-tool">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "",
+        "description": "",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CNY"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "API Tool"
+        },
+        "featureList": [],
+        "url": "https://your-domain.com/api-tool",
+        "datePublished": "2026-01-27",
+        "dateModified": "2026-01-27"
+    }
+    </script>
     <style>
         * {
             margin: 0;
@@ -33,6 +69,9 @@
             color: white;
             padding: 20px;
             text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .main-content {
@@ -126,9 +165,11 @@
 
         .response-info {
             display: flex;
+            align-items: center;
             gap: 20px;
             margin-bottom: 15px;
             font-size: 14px;
+            flex-wrap: wrap;
         }
 
         .response-body {
@@ -162,36 +203,105 @@
         .method-post { color: #007bff; }
         .method-put { color: #ffc107; }
         .method-delete { color: #dc3545; }
+        
+        /* SEO内容样式 */
+        .seo-description {
+            margin: 10px 0;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .features-section, .use-cases-section {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            color: #666;
+            font-size: 14px;
+            display: none; /* 默认隐藏，仅用于SEO */
+        }
+        
+        .features-section h2, .use-cases-section h2 {
+            font-size: 18px;
+            margin: 15px 0 10px;
+            color: #333;
+            display: none; /* 默认隐藏，仅用于SEO */
+        }
+        
+        .features-section ul {
+            list-style: disc;
+            margin-left: 20px;
+            display: none; /* 默认隐藏，仅用于SEO */
+        }
+        
+        footer {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+            display: none; /* 默认隐藏，仅用于SEO */
+        }
+        
+        .language-switcher {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .language-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .language-btn.active {
+            background: rgba(255, 255, 255, 0.3);
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>API 调试工具</h1>
-            <p>无需注册，即开即用的API调试工具</p>
+            <div>
+                <h1 data-i18n="app_title">API 调试工具</h1>
+                <p data-i18n="app_subtitle">无需注册，即开即用的API调试工具</p>
+            </div>
+            <div class="language-switcher">
+                <button class="language-btn active" id="zh-lang-btn" data-lang="zh">中文</button>
+                <button class="language-btn" id="en-lang-btn" data-lang="en">English</button>
+            </div>
         </header>
+        
+        <main>
+            <section class="api-tester-section" aria-labelledby="api-tester-title">
+                <h2 id="api-tester-title" data-i18n="main_heading">在线API接口测试工具</h2>
+                <p class="seo-description" data-i18n="main_description">专业的在线API调试工具，帮助开发者快速测试和调试各种API接口。支持多种HTTP请求方法，可自定义参数、请求头和请求体。</p>
 
         <div class="main-content">
             <!-- 请求区域 -->
             <div class="request-section">
                 <div class="url-bar">
                     <select id="method">
-                        <option value="GET">GET</option>
-                        <option value="POST">POST</option>
-                        <option value="PUT">PUT</option>
-                        <option value="DELETE">DELETE</option>
-                        <option value="PATCH">PATCH</option>
+                        <option value="GET" data-i18n="method_get">GET</option>
+                        <option value="POST" data-i18n="method_post">POST</option>
+                        <option value="PUT" data-i18n="method_put">PUT</option>
+                        <option value="DELETE" data-i18n="method_delete">DELETE</option>
+                        <option value="PATCH" data-i18n="method_patch">PATCH</option>
                     </select>
-                    <input type="url" id="url" placeholder="https://api.example.com/data" value="https://jsonplaceholder.typicode.com/posts">
-                    <button id="send-btn">发送</button>
+                    <input type="url" id="url" placeholder="" data-i18n="url_placeholder" data-i18n-attr="placeholder" value="https://jsonplaceholder.typicode.com/posts">
+                    <button id="send-btn" data-i18n="send_button">发送</button>
                 </div>
 
                 <!-- 查询参数 -->
                 <div class="params-section">
-                    <div class="section-title">查询参数</div>
+                    <div class="section-title" data-i18n="query_params_title">查询参数</div>
                     <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-                        <button class="btn-add" id="add-param">+ 添加参数</button>
-                        <button class="btn-add" id="import-params">导入参数</button>
+                        <button class="btn-add" id="add-param" data-i18n="add_param_button">+ 添加参数</button>
+                        <button class="btn-add" id="import-params" data-i18n="import_params_button">导入参数</button>
                     </div>
                     <div class="params-container" id="params-container">
                         <!-- 参数行将动态添加到这里 -->
@@ -200,50 +310,85 @@
 
                 <!-- 请求头 -->
                 <div class="headers-section">
-                    <div class="section-title">请求头</div>
+                    <div class="section-title" data-i18n="headers_title">请求头</div>
                     <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-                        <button class="btn-add" id="add-header">+ 添加头部</button>
-                        <button class="btn-add" id="import-headers">导入头部</button>
+                        <button class="btn-add" id="add-header" data-i18n="add_header_button">+ 添加头部</button>
+                        <button class="btn-add" id="import-headers" data-i18n="import_headers_button">导入头部</button>
                     </div>
                     <div class="headers-container" id="headers-container">
                         <!-- 头部行将动态添加到这里 -->
                         <div class="header-row">
-                            <input type="text" placeholder="Content-Type" value="Content-Type">
-                            <input type="text" placeholder="值" value="application/json">
-                            <button class="btn-remove" onclick="this.parentElement.remove()">-</button>
+                            <input type="text" placeholder="" data-i18n="header_name_placeholder" data-i18n-attr="placeholder" value="Content-Type">
+                            <input type="text" placeholder="" data-i18n="header_value_placeholder" data-i18n-attr="placeholder" value="application/json">
+                            <button class="btn-remove" onclick="this.parentElement.remove()" data-i18n="remove_button">-</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- 请求体 -->
                 <div class="body-section">
-                    <div class="section-title">请求体</div>
+                    <div class="section-title" data-i18n="request_body_title">请求体</div>
                     <div class="body-selector">
                         <select id="body-type">
-                            <option value="none">无</option>
-                            <option value="json">JSON</option>
-                            <option value="form">Form Data</option>
-                            <option value="raw">Raw</option>
+                            <option value="none" data-i18n="body_none">无</option>
+                            <option value="json" data-i18n="body_json">JSON</option>
+                            <option value="form" data-i18n="body_form">Form Data</option>
+                            <option value="raw" data-i18n="body_raw">Raw</option>
                         </select>
                     </div>
-                    <textarea id="request-body" placeholder="请输入请求体内容"></textarea>
+                    <div id="form-data-section" style="display: none;">
+                        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                            <button class="btn-add" id="add-form-param" data-i18n="add_form_param_button">+ 添加参数</button>
+                            <button class="btn-add" id="import-form-data" data-i18n="import_form_data_button">导入数据</button>
+                        </div>
+                        <div class="params-container" id="form-data-container">
+                            <!-- Form data rows will be added here -->
+                        </div>
+                    </div>
+                    <textarea id="request-body" placeholder="" data-i18n="request_body_placeholder" data-i18n-attr="placeholder"></textarea>
                 </div>
             </div>
 
             <!-- 响应区域 -->
             <div class="response-section">
-                <div class="section-title">响应结果</div>
+                <div class="section-title" data-i18n="response_title">响应结果</div>
                 <div class="response-info">
-                    <span>状态: <span id="status">-</span></span>
-                    <span>耗时: <span id="time">-</span> ms</span>
-                    <span>大小: <span id="size">-</span> bytes</span>
+                    <span data-i18n="status_label">状态: <span id="status">-</span></span>
+                    <span data-i18n="time_label">耗时: <span id="time">-</span> ms</span>
+                    <span data-i18n="size_label">大小: <span id="size">-</span> bytes</span>
+                    <button class="btn-secondary" id="copy-request-btn" data-i18n="copy_request_button">复制请求</button>
                 </div>
-                <div class="response-body" id="response-body">等待响应...</div>
+                <div class="response-body" id="response-body" data-i18n="waiting_response">等待响应...</div>
             </div>
         </div>
-    </div>
+    </main>
+</div>
 
-    <style>
+<!-- 添加功能特性说明，有助于SEO -->
+<section class="features-section" aria-label="API调试工具功能特性">
+    <h2 data-i18n="features_title">API调试工具功能特性</h2>
+    <ul>
+        <li data-i18n="feature_1">支持多种HTTP请求方法：GET、POST、PUT、DELETE、PATCH</li>
+        <li data-i18n="feature_2">可自定义查询参数，支持批量添加和导入</li>
+        <li data-i18n="feature_3">灵活的请求头设置，支持常见头部格式</li>
+        <li data-i18n="feature_4">多种请求体格式：JSON、Form Data、Raw文本</li>
+        <li data-i18n="feature_5">实时响应结果显示，包含状态码、响应时间、数据大小</li>
+        <li data-i18n="feature_6">直观的用户界面，操作简单便捷</li>
+        <li data-i18n="feature_7">无需安装，即开即用的在线工具</li>
+    </ul>
+</section>
+
+<!-- 添加使用场景说明，有助于SEO -->
+<section class="use-cases-section" aria-label="API调试工具使用场景">
+    <h2 data-i18n="use_cases_title">API调试工具使用场景</h2>
+    <p data-i18n="use_cases_description">适用于后端API开发测试、前端接口联调、第三方API集成测试等多种场景。无论是个人开发者还是团队协作，都能大幅提升API调试效率。</p>
+</section>
+
+<footer>
+    <p data-i18n="footer_text">&copy; 2026 API调试工具 - 专业的在线API测试平台 | 提升开发效率，简化API调试流程</p>
+</footer>
+
+<style>
         /* 弹窗样式 */
         .modal {
             display: none;
@@ -336,45 +481,241 @@
     </style>
 
     <!-- 导入参数弹窗 -->
-    <div id="importParamsModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">导入参数</h3>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <p>请粘贴参数，每行一个key:value格式：</p>
-                <p style="font-size: 12px; color: #666; margin: 5px 0;">例如：<br>name:John<br>age:30</p>
-                <textarea id="paramsTextarea" class="modal-textarea" placeholder="在此粘贴参数，每行一个key:value格式"></textarea>
-            </div>
-            <div class="modal-footer">
-                <button class="modal-btn btn-cancel" id="cancelParamsBtn">取消</button>
-                <button class="modal-btn btn-confirm" id="confirmParamsBtn">确定</button>
+        <div id="importParamsModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" data-i18n="import_params_title">导入参数</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p data-i18n="import_params_instructions">请粘贴参数，每行一个key:value格式：</p>
+                    <p style="font-size: 12px; color: #666; margin: 5px 0;" data-i18n="import_params_example">例如：<br>name:John<br>age:30</p>
+                    <textarea id="paramsTextarea" class="modal-textarea" placeholder="" data-i18n="import_params_placeholder" data-i18n-attr="placeholder"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-btn btn-cancel" id="cancelParamsBtn" data-i18n="cancel_button">取消</button>
+                    <button class="modal-btn btn-confirm" id="confirmParamsBtn" data-i18n="confirm_button">确定</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- 导入请求头弹窗 -->
-    <div id="importHeadersModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">导入请求头</h3>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <p>请粘贴请求头，每行一个key:value格式：</p>
-                <p style="font-size: 12px; color: #666; margin: 5px 0;">例如：<br>Authorization:Bearer token<br>Content-Type:application/json</p>
-                <textarea id="headersTextarea" class="modal-textarea" placeholder="在此粘贴请求头，每行一个key:value格式"></textarea>
-            </div>
-            <div class="modal-footer">
-                <button class="modal-btn btn-cancel" id="cancelHeadersBtn">取消</button>
-                <button class="modal-btn btn-confirm" id="confirmHeadersBtn">确定</button>
+        <!-- 导入请求头弹窗 -->
+        <div id="importHeadersModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" data-i18n="import_headers_title">导入请求头</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p data-i18n="import_headers_instructions">请粘贴请求头，每行一个key:value格式：</p>
+                    <p style="font-size: 12px; color: #666; margin: 5px 0;" data-i18n="import_headers_example">例如：<br>Authorization:Bearer token<br>Content-Type:application/json</p>
+                    <textarea id="headersTextarea" class="modal-textarea" placeholder="" data-i18n="import_headers_placeholder" data-i18n-attr="placeholder"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-btn btn-cancel" id="cancelHeadersBtn" data-i18n="cancel_button">取消</button>
+                    <button class="modal-btn btn-confirm" id="confirmHeadersBtn" data-i18n="confirm_button">确定</button>
+                </div>
             </div>
         </div>
-    </div>
+
+        <!-- 导入表单数据弹窗 -->
+        <div id="importFormDataModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" data-i18n="import_form_data_title">导入表单数据</h3>
+                    <span class="close" id="closeFormDataModal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p data-i18n="import_form_data_instructions">请粘贴表单数据，每行一个key:value格式：</p>
+                    <p style="font-size: 12px; color: #666; margin: 5px 0;" data-i18n="import_form_data_example">例如：<br>name:John<br>email:test@example.com</p>
+                    <textarea id="formDataTextarea" class="modal-textarea" placeholder="" data-i18n="import_form_data_placeholder" data-i18n-attr="placeholder"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-btn btn-cancel" id="cancelFormDataBtn" data-i18n="cancel_button">取消</button>
+                    <button class="modal-btn btn-confirm" id="confirmFormDataBtn" data-i18n="confirm_button">确定</button>
+                </div>
+            </div>
+        </div>
 
     <script>
-        // 获取DOM元素
+        // Language data
+        const translations = {
+            zh: {
+                page_title: "API调试工具 - 在线接口测试平台 | 免费API调试助手",
+                page_description: "专业在线API调试工具，无需注册即可使用。支持GET/POST/PUT/DELETE等多种请求方法，可自定义参数、请求头和请求体。快速测试API接口，查看响应结果、状态码、响应时间等详细信息。",
+                page_keywords: "API调试工具,在线API测试,接口调试,HTTP请求测试,API测试工具,REST API调试,免费API工具,在线调试平台",
+                og_title: "API调试工具 - 在线接口测试平台",
+                og_description: "专业在线API调试工具，无需注册即可使用。支持GET/POST/PUT/DELETE等多种请求方法，可自定义参数、请求头和请求体。",
+                twitter_title: "API调试工具 - 在线接口测试平台",
+                twitter_description: "专业在线API调试工具，无需注册即可使用。支持GET/POST/PUT/DELETE等多种请求方法，可自定义参数、请求头和请求体。",
+                app_title: "API 调试工具",
+                app_subtitle: "无需注册，即开即用的API调试工具",
+                main_heading: "在线API接口测试工具",
+                main_description: "专业的在线API调试工具，帮助开发者快速测试和调试各种API接口。支持多种HTTP请求方法，可自定义参数、请求头和请求体。",
+                method_get: "GET",
+                method_post: "POST",
+                method_put: "PUT",
+                method_delete: "DELETE",
+                method_patch: "PATCH",
+                url_placeholder: "https://api.example.com/data",
+                send_button: "发送",
+                query_params_title: "查询参数",
+                add_param_button: "+ 添加参数",
+                import_params_button: "导入参数",
+                headers_title: "请求头",
+                add_header_button: "+ 添加头部",
+                import_headers_button: "导入头部",
+                request_body_title: "请求体",
+                body_none: "无",
+                body_json: "JSON",
+                body_form: "Form Data",
+                body_raw: "Raw",
+                request_body_placeholder: "请输入请求体内容",
+                response_title: "响应结果",
+                status_label: "状态:",
+                time_label: "耗时:",
+                size_label: "大小:",
+                waiting_response: "等待响应...",
+                header_name_placeholder: "头部名称",
+                header_value_placeholder: "头部值",
+                remove_button: "-",
+                features_title: "API调试工具功能特性",
+                feature_1: "支持多种HTTP请求方法：GET、POST、PUT、DELETE、PATCH",
+                feature_2: "可自定义查询参数，支持批量添加和导入",
+                feature_3: "灵活的请求头设置，支持常见头部格式",
+                feature_4: "多种请求体格式：JSON、Form Data、Raw文本",
+                feature_5: "实时响应结果显示，包含状态码、响应时间、数据大小",
+                feature_6: "直观的用户界面，操作简单便捷",
+                feature_7: "无需安装，即开即用的在线工具",
+                use_cases_title: "API调试工具使用场景",
+                use_cases_description: "适用于后端API开发测试、前端接口联调、第三方API集成测试等多种场景。无论是个人开发者还是团队协作，都能大幅提升API调试效率。",
+                footer_text: "&copy; 2026 API调试工具 - 专业的在线API测试平台 | 提升开发效率，简化API调试流程",
+                import_params_title: "导入参数",
+                import_params_instructions: "请粘贴参数，每行一个key:value格式：",
+                import_params_example: "例如：<br>name:John<br>age:30",
+                import_params_placeholder: "在此粘贴参数，每行一个key:value格式",
+                import_headers_title: "导入请求头",
+                import_headers_instructions: "请粘贴请求头，每行一个key:value格式：",
+                import_headers_example: "例如：<br>Authorization:Bearer token<br>Content-Type:application/json",
+                import_headers_placeholder: "在此粘贴请求头，每行一个key:value格式",
+                cancel_button: "取消",
+                 confirm_button: "确定",
+                 json_format_error: "JSON格式错误",
+                 please_enter_url: "请输入URL",
+                 requesting: "请求中...",
+                 request_failed: "请求失败",
+                 add_form_param_button: "+ 添加参数",
+                 import_form_data_button: "导入数据",
+                 param_key_placeholder: "参数名",
+                param_value_placeholder: "参数值",
+                form_param_key_placeholder: "参数名",
+                form_param_value_placeholder: "参数值",
+                 form_file_label: "选择文件",
+                 form_add_file_button: "+ 添加文件",
+                 import_form_data_title: "导入表单数据",
+                import_form_data_instructions: "请粘贴表单数据，每行一个key:value格式：",
+                import_form_data_example: "例如：<br>name:John<br>email:test@example.com",
+                import_form_data_placeholder: "在此粘贴表单数据，每行一个key:value格式",
+                copy_request_button: "复制请求",
+                request_method: "请求方法",
+                request_url: "请求URL",
+                query_params: "查询参数",
+                request_headers: "请求头",
+                request_body: "请求体",
+                response_data: "响应数据",
+                copied_successfully: "已成功复制到剪贴板！",
+                copy_failed: "复制失败，请重试。"
+             },
+             en: {
+                page_title: "API Debugging Tool - Online Interface Testing Platform | Free API Debugging Assistant",
+                page_description: "Professional online API debugging tool, ready to use without registration. Supports multiple request methods including GET/POST/PUT/DELETE, customizable parameters, headers and request body. Quickly test API interfaces, view response results, status codes, response time and other detailed information.",
+                page_keywords: "API debugging tool,online API testing,interface debugging,HTTP request testing,API testing tool,REST API debugging,free API tool,online debugging platform",
+                og_title: "API Debugging Tool - Online Interface Testing Platform",
+                og_description: "Professional online API debugging tool, ready to use without registration. Supports multiple request methods including GET/POST/PUT/DELETE, customizable parameters, headers and request body.",
+                twitter_title: "API Debugging Tool - Online Interface Testing Platform",
+                twitter_description: "Professional online API debugging tool, ready to use without registration. Supports multiple request methods including GET/POST/PUT/DELETE, customizable parameters, headers and request body.",
+                app_title: "API Debugging Tool",
+                app_subtitle: "Ready to use without registration",
+                main_heading: "Online API Interface Testing Tool",
+                main_description: "Professional online API debugging tool that helps developers quickly test and debug various API interfaces. Supports multiple HTTP request methods, customizable parameters, headers and request body.",
+                method_get: "GET",
+                method_post: "POST",
+                method_put: "PUT",
+                method_delete: "DELETE",
+                method_patch: "PATCH",
+                url_placeholder: "https://api.example.com/data",
+                send_button: "Send",
+                query_params_title: "Query Parameters",
+                add_param_button: "+ Add Parameter",
+                import_params_button: "Import Params",
+                headers_title: "Request Headers",
+                add_header_button: "+ Add Header",
+                import_headers_button: "Import Headers",
+                request_body_title: "Request Body",
+                body_none: "None",
+                body_json: "JSON",
+                body_form: "Form Data",
+                body_raw: "Raw",
+                request_body_placeholder: "Please enter request body content",
+                response_title: "Response Result",
+                status_label: "Status:",
+                time_label: "Time:",
+                size_label: "Size:",
+                waiting_response: "Waiting for response...",
+                header_name_placeholder: "Header Name",
+                header_value_placeholder: "Header Value",
+                remove_button: "-",
+                features_title: "API Debugging Tool Features",
+                feature_1: "Supports multiple HTTP request methods: GET, POST, PUT, DELETE, PATCH",
+                feature_2: "Customizable query parameters, supports batch adding and importing",
+                feature_3: "Flexible request header settings, supports common header formats",
+                feature_4: "Multiple request body formats: JSON, Form Data, Raw text",
+                feature_5: "Real-time response results display, including status code, response time, data size",
+                feature_6: "Intuitive user interface, simple and easy to operate",
+                feature_7: "No installation required, ready to use online tool",
+                use_cases_title: "API Debugging Tool Use Cases",
+                use_cases_description: "Suitable for backend API development testing, front-end interface integration, third-party API integration testing and other scenarios. Whether individual developers or team collaboration, it can greatly improve API debugging efficiency.",
+                footer_text: "&copy; 2026 API Debugging Tool - Professional Online API Testing Platform | Improve development efficiency, simplify API debugging process",
+                import_params_title: "Import Parameters",
+                import_params_instructions: "Please paste parameters in key:value format per line:",
+                import_params_example: "Example:<br>name:John<br>age:30",
+                import_params_placeholder: "Paste parameters here in key:value format per line",
+                import_headers_title: "Import Headers",
+                import_headers_instructions: "Please paste headers in key:value format per line:",
+                import_headers_example: "Example:<br>Authorization:Bearer token<br>Content-Type:application/json",
+                import_headers_placeholder: "Paste headers here in key:value format per line",
+                 cancel_button: "Cancel",
+                 confirm_button: "Confirm",
+                 json_format_error: "JSON format error",
+                 please_enter_url: "Please enter URL",
+                 requesting: "Requesting...",
+                 request_failed: "Request failed",
+                 add_form_param_button: "+ Add Parameter",
+                 import_form_data_button: "Import Data",
+                 param_key_placeholder: "Parameter name",
+                param_value_placeholder: "Parameter value",
+                form_param_key_placeholder: "Parameter name",
+                form_param_value_placeholder: "Parameter value",
+                 form_file_label: "Choose file",
+                 form_add_file_button: "+ Add File",
+                 import_form_data_title: "Import Form Data",
+                import_form_data_instructions: "Please paste form data in key:value format per line:",
+                import_form_data_example: "Example:<br>name:John<br>email:test@example.com",
+                import_form_data_placeholder: "Paste form data here in key:value format per line",
+                copy_request_button: "Copy Request",
+                request_method: "Request Method",
+                request_url: "Request URL",
+                query_params: "Query Parameters",
+                request_headers: "Request Headers",
+                request_body: "Request Body",
+                response_data: "Response Data",
+                copied_successfully: "Copied to clipboard successfully!",
+                copy_failed: "Failed to copy, please try again."
+             }
+         };
+
+        // Get DOM elements
+        const htmlElement = document.documentElement;
         const methodSelect = document.getElementById('method');
         const urlInput = document.getElementById('url');
         const sendBtn = document.getElementById('send-btn');
@@ -391,7 +732,7 @@
         const importParamsBtn = document.getElementById('import-params');
         const importHeadersBtn = document.getElementById('import-headers');
 
-        // 获取弹窗相关元素
+        // Get modal related elements
         const importParamsModal = document.getElementById('importParamsModal');
         const importHeadersModal = document.getElementById('importHeadersModal');
         const paramsTextarea = document.getElementById('paramsTextarea');
@@ -401,139 +742,412 @@
         const cancelParamsBtn = document.getElementById('cancelParamsBtn');
         const cancelHeadersBtn = document.getElementById('cancelHeadersBtn');
 
-        // 关闭按钮元素
+        // Get close button elements
         const closeParamsSpan = importParamsModal.querySelector('.close');
         const closeHeadersSpan = importHeadersModal.querySelector('.close');
+        
+        // Language switcher buttons
+        const zhLangBtn = document.getElementById('zh-lang-btn');
+        const enLangBtn = document.getElementById('en-lang-btn');
 
-        // 添加参数行
-        addParamBtn.addEventListener('click', () => {
+        // Detect browser language
+        function getBrowserLanguage() {
+            const browserLang = navigator.language || navigator.userLanguage;
+            return browserLang.startsWith('zh') ? 'zh' : 'en';
+        }
+
+        // Current language
+        let currentLanguage = getBrowserLanguage();
+
+        // Initialize language
+        function initLanguage() {
+            // Set the initial language based on browser preference
+            if (!localStorage.getItem('preferredLanguage')) {
+                localStorage.setItem('preferredLanguage', currentLanguage);
+            } else {
+                currentLanguage = localStorage.getItem('preferredLanguage');
+            }
+            
+            // Update the UI based on the selected language
+            updateLanguage(currentLanguage);
+            
+            // Update active language button
+            updateActiveLanguageButton(currentLanguage);
+        }
+
+        // Update active language button
+        function updateActiveLanguageButton(lang) {
+            zhLangBtn.classList.toggle('active', lang === 'zh');
+            enLangBtn.classList.toggle('active', lang === 'en');
+        }
+
+        // Update language throughout the application
+        function updateLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('preferredLanguage', lang);
+            
+            // Update html lang attribute
+            htmlElement.setAttribute('lang', lang);
+            
+            // Update all elements with data-i18n attribute
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const translation = translations[lang][key];
+                
+                if (translation !== undefined) {
+                    // Check if we need to update an attribute instead of text content
+                    const attrToTranslate = element.getAttribute('data-i18n-attr');
+                    
+                    if (attrToTranslate) {
+                        // Update the specified attribute
+                        element.setAttribute(attrToTranslate, translation);
+                        
+                        // Special handling for title tag which needs to be updated separately
+                        if (element.tagName.toLowerCase() === 'title' || 
+                            (element.getAttribute('property') && element.getAttribute('property').startsWith('og:')) ||
+                            (element.name && element.name.startsWith('twitter:'))) {
+                            element.textContent = translation;
+                        }
+                    } else {
+                        // Update text content, handling HTML content specially
+                        if (key === 'import_params_example' || key === 'import_headers_example') {
+                            element.innerHTML = translation;
+                        } else {
+                            element.textContent = translation;
+                        }
+                    }
+                }
+            });
+            
+            // Update JSON-LD structured data
+            const jsonLdScript = document.querySelector('script[type="application/ld+json"]');
+            if (jsonLdScript) {
+                const jsonLdData = JSON.parse(jsonLdScript.textContent);
+                jsonLdData.name = translations[lang]['app_title'];
+                jsonLdData.description = translations[lang]['page_description'];
+                
+                // Update feature list
+                jsonLdData.featureList = [
+                    translations[lang]['feature_1'],
+                    translations[lang]['feature_2'],
+                    translations[lang]['feature_3'],
+                    translations[lang]['feature_4'],
+                    translations[lang]['feature_5'],
+                    translations[lang]['feature_6'],
+                    translations[lang]['feature_7']
+                ];
+                
+                jsonLdScript.textContent = JSON.stringify(jsonLdData);
+            }
+        }
+
+        // Add parameter row
+        document.getElementById('add-param').addEventListener('click', () => {
             const paramRow = document.createElement('div');
             paramRow.className = 'param-row';
             paramRow.innerHTML = `
-                <input type="text" placeholder="参数名">
-                <input type="text" placeholder="参数值">
-                <button class="btn-remove" onclick="this.parentElement.remove()">-</button>
+                <input type="text" placeholder="${translations[currentLanguage]['param_key_placeholder']}">
+                <input type="text" placeholder="${translations[currentLanguage]['param_value_placeholder']}">
+                <button class="btn-remove" onclick="this.parentElement.remove(); setTimeout(updateUrlWithParams, 100);">${translations[currentLanguage]['remove_button']}</button>
             `;
-            paramsContainer.appendChild(paramRow);
+            document.getElementById('params-container').appendChild(paramRow);
+            
+            // Add event listener to new inputs for real-time URL update
+            const inputs = paramRow.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('input', updateUrlWithParams);
+            });
         });
 
-        // 添加请求头行
-        addHeaderBtn.addEventListener('click', () => {
+        // Add header row
+        document.getElementById('add-header').addEventListener('click', () => {
             const headerRow = document.createElement('div');
             headerRow.className = 'header-row';
             headerRow.innerHTML = `
-                <input type="text" placeholder="头部名称">
-                <input type="text" placeholder="头部值">
-                <button class="btn-remove" onclick="this.parentElement.remove()">-</button>
+                <input type="text" placeholder="${translations[currentLanguage]['header_name_placeholder']}">
+                <input type="text" placeholder="${translations[currentLanguage]['header_value_placeholder']}">
+                <button class="btn-remove" onclick="this.parentElement.remove()">${translations[currentLanguage]['remove_button']}</button>
             `;
-            headersContainer.appendChild(headerRow);
+            document.getElementById('headers-container').appendChild(headerRow);
         });
 
-        // 打开导入参数弹窗
+        // Open import parameters modal
         importParamsBtn.onclick = () => {
             paramsTextarea.value = '';
             importParamsModal.style.display = 'block';
+            // Update modal content with current language
+            const modalTitle = importParamsModal.querySelector('.modal-title');
+            const modalInstructions = importParamsModal.querySelector('.modal-body > p:first-child');
+            const modalExample = importParamsModal.querySelector('.modal-body > p:nth-child(2)');
+            const modalPlaceholder = document.getElementById('paramsTextarea');
+            
+            if (modalTitle) modalTitle.textContent = translations[currentLanguage]['import_params_title'];
+            if (modalInstructions) modalInstructions.textContent = translations[currentLanguage]['import_params_instructions'];
+            if (modalExample) modalExample.innerHTML = translations[currentLanguage]['import_params_example'];
+            if (modalPlaceholder) modalPlaceholder.placeholder = translations[currentLanguage]['import_params_placeholder'];
+            
+            const cancelButton = importParamsModal.querySelector('#cancelParamsBtn');
+            const confirmButton = importParamsModal.querySelector('#confirmParamsBtn');
+            
+            if (cancelButton) cancelButton.textContent = translations[currentLanguage]['cancel_button'];
+            if (confirmButton) confirmButton.textContent = translations[currentLanguage]['confirm_button'];
         };
 
-        // 打开导入请求头弹窗
+        // Open import headers modal
         importHeadersBtn.onclick = () => {
             headersTextarea.value = '';
             importHeadersModal.style.display = 'block';
+            // Update modal content with current language
+            const modalTitle = importHeadersModal.querySelector('.modal-title');
+            const modalInstructions = importHeadersModal.querySelector('.modal-body > p:first-child');
+            const modalExample = importHeadersModal.querySelector('.modal-body > p:nth-child(2)');
+            const modalPlaceholder = document.getElementById('headersTextarea');
+            
+            if (modalTitle) modalTitle.textContent = translations[currentLanguage]['import_headers_title'];
+            if (modalInstructions) modalInstructions.textContent = translations[currentLanguage]['import_headers_instructions'];
+            if (modalExample) modalExample.innerHTML = translations[currentLanguage]['import_headers_example'];
+            if (modalPlaceholder) modalPlaceholder.placeholder = translations[currentLanguage]['import_headers_placeholder'];
+            
+            const cancelButton = importHeadersModal.querySelector('#cancelHeadersBtn');
+            const confirmButton = importHeadersModal.querySelector('#confirmHeadersBtn');
+            
+            if (cancelButton) cancelButton.textContent = translations[currentLanguage]['cancel_button'];
+            if (confirmButton) confirmButton.textContent = translations[currentLanguage]['confirm_button'];
         };
 
-        // 关闭弹窗函数
+        // Close modal function
         function closeModal(modal) {
             modal.style.display = 'none';
         }
 
-        // 解析并添加参数
+        // Parse and add parameters
         function addParamsFromText(text) {
             const lines = text.split('\n');
             lines.forEach(line => {
                 line = line.trim();
                 if (line.includes(':')) {
-                    const separatorIndex = line.indexOf(':');
-                    const key = line.substring(0, separatorIndex).trim();
-                    const value = line.substring(separatorIndex + 1).trim();
+                    const delimiterIndex = line.indexOf(':');
+                    const key = line.substring(0, delimiterIndex).trim();
+                    const value = line.substring(delimiterIndex + 1).trim();
                     
-                    if (key) {
-                        const paramRow = document.createElement('div');
-                        paramRow.className = 'param-row';
-                        paramRow.innerHTML = `
-                            <input type="text" placeholder="参数名" value="${key}">
-                            <input type="text" placeholder="参数值" value="${value}">
-                            <button class="btn-remove" onclick="this.parentElement.remove()">-</button>
-                        `;
-                        paramsContainer.appendChild(paramRow);
-                    }
+                    const paramRow = document.createElement('div');
+                    paramRow.className = 'param-row';
+                    paramRow.innerHTML = `
+                        <input type="text" placeholder="${currentLanguage === 'zh' ? '参数名' : 'Parameter name'}" value="${key}">
+                        <input type="text" placeholder="${currentLanguage === 'zh' ? '参数值' : 'Parameter value'}" value="${value}">
+                        <button class="btn-remove" onclick="this.parentElement.remove()">${translations[currentLanguage]['remove_button']}</button>
+                    `;
+                    document.getElementById('params-container').appendChild(paramRow);
                 }
             });
         }
 
-        // 解析并添加请求头
+        // Parse and add headers
         function addHeadersFromText(text) {
             const lines = text.split('\n');
             lines.forEach(line => {
                 line = line.trim();
                 if (line.includes(':')) {
-                    const separatorIndex = line.indexOf(':');
-                    const key = line.substring(0, separatorIndex).trim();
-                    const value = line.substring(separatorIndex + 1).trim();
+                    const delimiterIndex = line.indexOf(':');
+                    const key = line.substring(0, delimiterIndex).trim();
+                    const value = line.substring(delimiterIndex + 1).trim();
                     
-                    if (key) {
-                        const headerRow = document.createElement('div');
-                        headerRow.className = 'header-row';
-                        headerRow.innerHTML = `
-                            <input type="text" placeholder="头部名称" value="${key}">
-                            <input type="text" placeholder="头部值" value="${value}">
-                            <button class="btn-remove" onclick="this.parentElement.remove()">-</button>
-                        `;
-                        headersContainer.appendChild(headerRow);
-                    }
+                    const headerRow = document.createElement('div');
+                    headerRow.className = 'header-row';
+                    headerRow.innerHTML = `
+                        <input type="text" placeholder="${translations[currentLanguage]['header_name_placeholder']}" value="${key}">
+                        <input type="text" placeholder="${translations[currentLanguage]['header_value_placeholder']}" value="${value}">
+                        <button class="btn-remove" onclick="this.parentElement.remove()">${translations[currentLanguage]['remove_button']}</button>
+                    `;
+                    document.getElementById('headers-container').appendChild(headerRow);
                 }
             });
         }
 
-        // 导入参数确认按钮事件
-        confirmParamsBtn.onclick = () => {
-            const text = paramsTextarea.value.trim();
-            if (text) {
+        // Confirm parameters import
+        document.getElementById('confirmParamsBtn').addEventListener('click', () => {
+            const text = document.getElementById('paramsTextarea').value;
+            if (text.trim() !== '') {
                 addParamsFromText(text);
             }
-            closeModal(importParamsModal);
-        };
+            closeModal(document.getElementById('importParamsModal'));
+        });
 
-        // 导入请求头确认按钮事件
-        confirmHeadersBtn.onclick = () => {
-            const text = headersTextarea.value.trim();
-            if (text) {
+        // Confirm headers import
+        document.getElementById('confirmHeadersBtn').addEventListener('click', () => {
+            const text = document.getElementById('headersTextarea').value;
+            if (text.trim() !== '') {
                 addHeadersFromText(text);
             }
-            closeModal(importHeadersModal);
-        };
+            closeModal(document.getElementById('importHeadersModal'));
+        });
 
-        // 关闭参数弹窗事件
-        closeParamsSpan.onclick = () => closeModal(importParamsModal);
-        cancelParamsBtn.onclick = () => closeModal(importParamsModal);
+        // Cancel parameters import
+        document.getElementById('cancelParamsBtn').addEventListener('click', () => {
+            closeModal(document.getElementById('importParamsModal'));
+        });
 
-        // 关闭请求头弹窗事件
-        closeHeadersSpan.onclick = () => closeModal(importHeadersModal);
-        cancelHeadersBtn.onclick = () => closeModal(importHeadersModal);
+        // Cancel headers import
+        document.getElementById('cancelHeadersBtn').addEventListener('click', () => {
+            closeModal(document.getElementById('importHeadersModal'));
+        });
 
-        // 点击弹窗外部关闭弹窗
-        window.onclick = (event) => {
+        // Close modals when clicking on the close button (x)
+        document.querySelector('#importParamsModal .close').addEventListener('click', () => {
+            closeModal(document.getElementById('importParamsModal'));
+        });
+
+        document.querySelector('#importHeadersModal .close').addEventListener('click', () => {
+            closeModal(document.getElementById('importHeadersModal'));
+        });
+
+        // Close modals when clicking outside the modal content
+        window.addEventListener('click', (event) => {
             if (event.target === importParamsModal) {
                 closeModal(importParamsModal);
             }
             if (event.target === importHeadersModal) {
                 closeModal(importHeadersModal);
             }
-        };
+        });
+
+        // Language switching functionality
+        zhLangBtn.addEventListener('click', () => {
+            updateLanguage('zh');
+            updateActiveLanguageButton('zh');
+        });
+
+        enLangBtn.addEventListener('click', () => {
+            updateLanguage('en');
+            updateActiveLanguageButton('en');
+        });
+
+        // Initialize the language on page load
+        document.addEventListener('DOMContentLoaded', initLanguage);
+        
+
+        
+        // Add parameter row
+        addParamBtn.addEventListener('click', () => {
+            const paramRow = document.createElement('div');
+            paramRow.className = 'param-row';
+            paramRow.innerHTML = `
+                <input type="text" placeholder="${currentLanguage === 'zh' ? '参数名' : 'Parameter name'}">
+                <input type="text" placeholder="${currentLanguage === 'zh' ? '参数值' : 'Parameter value'}">
+                <button class="btn-remove" onclick="this.parentElement.remove()">${translations[currentLanguage]['remove_button']}</button>
+            `;
+            paramsContainer.appendChild(paramRow);
+        });
+
+        // Add header row
+        addHeaderBtn.addEventListener('click', () => {
+            const headerRow = document.createElement('div');
+            headerRow.className = 'header-row';
+            headerRow.innerHTML = `
+                <input type="text" placeholder="${translations[currentLanguage]['header_name_placeholder']}">
+                <input type="text" placeholder="${translations[currentLanguage]['header_value_placeholder']}">
+                <button class="btn-remove" onclick="this.parentElement.remove()">${translations[currentLanguage]['remove_button']}</button>
+            `;
+            headersContainer.appendChild(headerRow);
+        });
+
+        // Parse and add parameters
+        function addParamsFromText(text) {
+            const lines = text.split('\n');
+            lines.forEach(line => {
+                line = line.trim();
+                if (line.includes(':')) {
+                    const delimiterIndex = line.indexOf(':');
+                    const key = line.substring(0, delimiterIndex).trim();
+                    const value = line.substring(delimiterIndex + 1).trim();
+                    
+                    const paramRow = document.createElement('div');
+                    paramRow.className = 'param-row';
+                    paramRow.innerHTML = `
+                        <input type="text" placeholder="${currentLanguage === 'zh' ? '参数名' : 'Parameter name'}" value="${key}">
+                        <input type="text" placeholder="${currentLanguage === 'zh' ? '参数值' : 'Parameter value'}" value="${value}">
+                        <button class="btn-remove" onclick="this.parentElement.remove()">${translations[currentLanguage]['remove_button']}</button>
+                    `;
+                    paramsContainer.appendChild(paramRow);
+                }
+            });
+        }
+
+        // Parse and add headers
+        function addHeadersFromText(text) {
+            const lines = text.split('\n');
+            lines.forEach(line => {
+                line = line.trim();
+                if (line.includes(':')) {
+                    const delimiterIndex = line.indexOf(':');
+                    const key = line.substring(0, delimiterIndex).trim();
+                    const value = line.substring(delimiterIndex + 1).trim();
+                    
+                    const headerRow = document.createElement('div');
+                    headerRow.className = 'header-row';
+                    headerRow.innerHTML = `
+                        <input type="text" placeholder="${translations[currentLanguage]['header_name_placeholder']}" value="${key}">
+                        <input type="text" placeholder="${translations[currentLanguage]['header_value_placeholder']}" value="${value}">
+                        <button class="btn-remove" onclick="this.parentElement.remove()">${translations[currentLanguage]['remove_button']}</button>
+                    `;
+                    headersContainer.appendChild(headerRow);
+                }
+            });
+        }
+
+        // Confirm parameters import
+        confirmParamsBtn.addEventListener('click', () => {
+            const text = paramsTextarea.value;
+            if (text.trim() !== '') {
+                addParamsFromText(text);
+            }
+            closeModal(importParamsModal);
+        });
+
+        // Confirm headers import
+        confirmHeadersBtn.addEventListener('click', () => {
+            const text = headersTextarea.value;
+            if (text.trim() !== '') {
+                addHeadersFromText(text);
+            }
+            closeModal(importHeadersModal);
+        });
+
+        // Cancel parameters import
+        cancelParamsBtn.addEventListener('click', () => {
+            closeModal(importParamsModal);
+        });
+
+        // Cancel headers import
+        cancelHeadersBtn.addEventListener('click', () => {
+            closeModal(importHeadersModal);
+        });
+
+        // Close modals when clicking on the close button (x)
+        closeParamsSpan.addEventListener('click', () => {
+            closeModal(importParamsModal);
+        });
+
+        closeHeadersSpan.addEventListener('click', () => {
+            closeModal(importHeadersModal);
+        });
+
+        // Close modals when clicking outside the modal content
+        window.addEventListener('click', (event) => {
+            if (event.target === document.getElementById('importParamsModal')) {
+                closeModal(document.getElementById('importParamsModal'));
+            }
+            if (event.target === document.getElementById('importHeadersModal')) {
+                closeModal(document.getElementById('importHeadersModal'));
+            }
+        });
 
         // 构建带参数的URL
         function buildUrlWithParams(baseUrl) {
             const params = [];
-            const paramRows = paramsContainer.querySelectorAll('.param-row');
+            const paramRows = document.getElementById('params-container').querySelectorAll('.param-row');
             
             paramRows.forEach(row => {
                 const keyInput = row.querySelector('input:first-child');
@@ -551,11 +1165,37 @@
             
             return baseUrl;
         }
+        
+        // Update URL in real-time when query parameters change
+        function updateUrlWithParams() {
+            const urlInput = document.getElementById('url');
+            const baseUrl = urlInput.value.trim();
+            if (!baseUrl) return;
+            
+            // Extract base URL without existing query parameters
+            const baseUrlWithoutParams = baseUrl.split('?')[0];
+            
+            const fullUrl = buildUrlWithParams(baseUrlWithoutParams);
+            urlInput.value = fullUrl;
+        }
+        
+        // Add event listeners to automatically update URL when parameters change
+        document.getElementById('params-container').addEventListener('input', function(e) {
+            if (e.target.tagName === 'INPUT') {
+                setTimeout(updateUrlWithParams, 100); // Small delay to allow DOM to update
+            }
+        });
+        
+        // Also add event listener for adding/removing parameter rows
+        const originalAddParamFunction = document.getElementById('add-param').onclick;
+        document.getElementById('add-param').addEventListener('click', function() {
+            setTimeout(updateUrlWithParams, 100);
+        });
 
         // 获取请求头对象
         function getRequestHeaders() {
             const headers = {};
-            const headerRows = headersContainer.querySelectorAll('.header-row');
+            const headerRows = document.getElementById('headers-container').querySelectorAll('.header-row');
             
             headerRows.forEach(row => {
                 const keyInput = row.querySelector('input:first-child');
@@ -571,59 +1211,82 @@
 
         // 获取请求体数据
         function getRequestBody() {
-            const bodyType = bodyTypeSelect.value;
+            const bodyType = document.getElementById('body-type').value;
             
             if (bodyType === 'none') {
                 return null;
             }
             
-            const bodyContent = requestBody.value.trim();
-            
-            if (!bodyContent) {
-                return null;
-            }
-            
             if (bodyType === 'json') {
+                const bodyContent = document.getElementById('request-body').value.trim();
+                
+                if (!bodyContent) {
+                    return null;
+                }
+                
                 try {
                     return JSON.parse(bodyContent);
                 } catch (e) {
-                    alert('JSON格式错误: ' + e.message);
+                    alert(translations[currentLanguage]['json_format_error'] || 'JSON格式错误: ' + e.message);
                     throw e;
                 }
             } else if (bodyType === 'form') {
-                // 对于表单数据，需要特殊处理
+                // 对于表单数据，从动态表单行获取数据
                 const formData = new FormData();
-                const formPairs = bodyContent.split('\n');
+                const formDataRows = document.querySelectorAll('#form-data-container .param-row');
                 
-                formPairs.forEach(pair => {
-                    if (pair.includes('=')) {
-                        const [key, ...valueParts] = pair.split('=');
-                        const value = valueParts.join('=');
-                        formData.append(key.trim(), value.trim());
+                formDataRows.forEach(row => {
+                    const inputs = row.querySelectorAll('input');
+                    if (inputs.length >= 2) {
+                        const keyInput = inputs[0]; // 第一个是参数名
+                        const valueInput = inputs[1]; // 第二个是参数值
+                        
+                        if (valueInput.type === 'file') {
+                            // 处理文件输入
+                            if (valueInput.files.length > 0) {
+                                formData.append(keyInput.value.trim(), valueInput.files[0]);
+                            }
+                        } else {
+                            // 处理文本输入
+                            if (keyInput.value.trim() !== '' && valueInput.value.trim() !== '') {
+                                formData.append(keyInput.value.trim(), valueInput.value.trim());
+                            }
+                        }
                     }
                 });
                 
                 return formData;
-            } else {
+            } else if (bodyType === 'raw') {
                 // Raw类型直接返回字符串
-                return bodyContent;
+                const bodyContent = document.getElementById('request-body').value.trim();
+                return bodyContent || null;
             }
+            
+            return null;
         }
 
         // 发送请求
         async function sendRequest() {
-            const method = methodSelect.value;
-            const url = urlInput.value.trim();
+            const method = document.getElementById('method').value;
+            const url = document.getElementById('url').value.trim();
             
             if (!url) {
-                alert('请输入URL');
+                alert(translations[currentLanguage]['please_enter_url'] || '请输入URL');
                 return;
             }
             
             // 显示加载状态
-            responseBody.textContent = '请求中...';
-            sendBtn.disabled = true;
-            sendBtn.textContent = '请求中...';
+            const responseBodyEl = document.getElementById('response-body');
+            const sendBtnEl = document.getElementById('send-btn');
+            
+            if (responseBodyEl) {
+                responseBodyEl.textContent = translations[currentLanguage]['requesting'] || '请求中...';
+            }
+            
+            if (sendBtnEl) {
+                sendBtnEl.disabled = true;
+                sendBtnEl.textContent = translations[currentLanguage]['requesting'] || '请求中...';
+            }
             
             try {
                 // 记录开始时间用于计算请求耗时
@@ -668,59 +1331,362 @@
                 const responseText = await response.text();
                 
                 // 更新UI显示响应信息
-                statusSpan.textContent = `${response.status} ${response.statusText}`;
-                timeSpan.textContent = duration;
-                sizeSpan.textContent = new Blob([responseText]).size;
+                const statusEl = document.getElementById('status');
+                const timeEl = document.getElementById('time');
+                const sizeEl = document.getElementById('size');
+                const responseBodyEl = document.getElementById('response-body');
+                
+                if (statusEl) {
+                    statusEl.textContent = `${response.status} ${response.statusText}`;
+                }
+                
+                if (timeEl) {
+                    timeEl.textContent = duration;
+                }
+                
+                if (sizeEl) {
+                    sizeEl.textContent = new Blob([responseText]).size;
+                }
                 
                 // 尝试解析JSON并格式化显示
-                if (response.headers.get('content-type')?.includes('application/json')) {
-                    try {
-                        const json = JSON.parse(responseText);
-                        responseBody.textContent = JSON.stringify(json, null, 2);
-                    } catch (e) {
-                        responseBody.textContent = responseText;
+                if (responseBodyEl) {
+                    if (response.headers.get('content-type')?.includes('application/json')) {
+                        try {
+                            const json = JSON.parse(responseText);
+                            responseBodyEl.textContent = JSON.stringify(json, null, 2);
+                        } catch (e) {
+                            responseBodyEl.textContent = responseText;
+                        }
+                    } else {
+                        responseBodyEl.textContent = responseText;
                     }
-                } else {
-                    responseBody.textContent = responseText;
                 }
                 
             } catch (error) {
                 console.error('请求失败:', error);
-                responseBody.textContent = `请求失败: ${error.message}`;
-                statusSpan.textContent = '请求失败';
-                timeSpan.textContent = '-';
-                sizeSpan.textContent = '-';
+                const responseBodyEl = document.getElementById('response-body');
+                const statusEl = document.getElementById('status');
+                const timeEl = document.getElementById('time');
+                const sizeEl = document.getElementById('size');
+                
+                if (responseBodyEl) {
+                    responseBodyEl.textContent = `${translations[currentLanguage]['request_failed'] || '请求失败'}: ${error.message}`;
+                }
+                
+                if (statusEl) {
+                    statusEl.textContent = translations[currentLanguage]['request_failed'] || '请求失败';
+                }
+                
+                if (timeEl) {
+                    timeEl.textContent = '-';
+                }
+                
+                if (sizeEl) {
+                    sizeEl.textContent = '-';
+                }
             } finally {
                 // 恢复按钮状态
-                sendBtn.disabled = false;
-                sendBtn.textContent = '发送';
+                const sendBtnEl = document.getElementById('send-btn');
+                if (sendBtnEl) {
+                    sendBtnEl.disabled = false;
+                    sendBtnEl.textContent = translations[currentLanguage]['send_button'] || '发送';
+                }
             }
         }
 
         // 绑定发送按钮事件
-        sendBtn.addEventListener('click', sendRequest);
+        document.getElementById('send-btn').addEventListener('click', sendRequest);
 
         // 按钮回车键也可以触发发送
-        urlInput.addEventListener('keypress', (e) => {
+        document.getElementById('url').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 sendRequest();
             }
         });
 
         // 根据请求体类型切换textarea的显示/隐藏
-        bodyTypeSelect.addEventListener('change', function() {
+        document.getElementById('body-type').addEventListener('change', function() {
             const bodySection = document.querySelector('.body-section');
+            const formDataSection = document.getElementById('form-data-section');
+            
             if (this.value === 'none') {
-                requestBody.style.display = 'none';
+                document.getElementById('request-body').style.display = 'none';
+                formDataSection.style.display = 'none';
+            } else if (this.value === 'form') {
+                document.getElementById('request-body').style.display = 'none';
+                formDataSection.style.display = 'block';
             } else {
-                requestBody.style.display = 'block';
+                document.getElementById('request-body').style.display = 'block';
+                formDataSection.style.display = 'none';
             }
         });
 
         // 初始化时根据默认选项设置请求体区域显示状态
-        if (bodyTypeSelect.value === 'none') {
-            requestBody.style.display = 'none';
+        if (document.getElementById('body-type').value === 'none') {
+            document.getElementById('request-body').style.display = 'none';
+        } else if (document.getElementById('body-type').value === 'form') {
+            document.getElementById('form-data-section').style.display = 'block';
         }
+
+        // Add form data parameter row
+        document.getElementById('add-form-param').addEventListener('click', () => {
+            const formDataRow = document.createElement('div');
+            formDataRow.className = 'param-row';
+            formDataRow.innerHTML = `
+                <input type="text" placeholder="${translations[currentLanguage]['form_param_key_placeholder']}">
+                <input type="text" placeholder="${translations[currentLanguage]['form_param_value_placeholder']}">
+                <button class="btn-remove" onclick="this.parentElement.remove()">${translations[currentLanguage]['remove_button']}</button>
+            `;
+            document.getElementById('form-data-container').appendChild(formDataRow);
+        });
+
+        // Add form data file row
+        const addFormFileBtn = document.createElement('button');
+        addFormFileBtn.className = 'btn-add';
+        addFormFileBtn.id = 'add-form-file';
+        addFormFileBtn.setAttribute('data-i18n', 'form_add_file_button');
+        addFormFileBtn.textContent = translations[currentLanguage]['form_add_file_button'];
+        addFormFileBtn.style.marginLeft = '10px';
+        document.getElementById('add-form-param').after(addFormFileBtn);
+
+        // Add file input event
+        document.addEventListener('click', function(e) {
+            if (e.target.id === 'add-form-file') {
+                const formDataRow = document.createElement('div');
+                formDataRow.className = 'param-row';
+                formDataRow.innerHTML = `
+                    <input type="text" placeholder="${translations[currentLanguage]['form_param_key_placeholder']}">
+                    <label style="flex: 1; display: flex; align-items: center; border: 1px solid #ddd; border-radius: 4px; padding: 8px; cursor: pointer;">
+                        <span>${translations[currentLanguage]['form_file_label']}</span>
+                        <input type="file" style="display: none;" onchange="handleFileSelect(this)">
+                    </label>
+                    <button class="btn-remove" onclick="this.parentElement.remove()">${translations[currentLanguage]['remove_button']}</button>
+                `;
+                document.getElementById('form-data-container').appendChild(formDataRow);
+            }
+        });
+
+        // Handle file selection
+        function handleFileSelect(input) {
+            const label = input.previousElementSibling;
+            label.textContent = input.files[0] ? input.files[0].name : translations[currentLanguage]['form_file_label'];
+        }
+
+        // Import form data
+        document.getElementById('import-form-data').addEventListener('click', () => {
+            // Clear textarea
+            document.getElementById('formDataTextarea').value = '';
+            
+            // Update modal content with current language
+            updateLanguage(currentLanguage);
+            
+            // Show modal
+            document.getElementById('importFormDataModal').style.display = 'block';
+        });
+
+        // Confirm form data import
+        document.getElementById('confirmFormDataBtn').addEventListener('click', () => {
+            const text = document.getElementById('formDataTextarea').value;
+            if (text.trim() !== '') {
+                addFormDataFromText(text);
+            }
+            document.getElementById('importFormDataModal').style.display = 'none';
+        });
+
+        // Cancel form data import
+        document.getElementById('cancelFormDataBtn').addEventListener('click', () => {
+            document.getElementById('importFormDataModal').style.display = 'none';
+        });
+
+        // Close form data modal when clicking on the close button (x)
+        document.getElementById('closeFormDataModal').addEventListener('click', () => {
+            document.getElementById('importFormDataModal').style.display = 'none';
+        });
+
+        // Close form data modal when clicking outside the modal content
+        window.addEventListener('click', (event) => {
+            if (event.target === document.getElementById('importFormDataModal')) {
+                document.getElementById('importFormDataModal').style.display = 'none';
+            }
+        });
+
+        // Add form data from text
+        function addFormDataFromText(text) {
+            const lines = text.split('\n');
+            lines.forEach(line => {
+                line = line.trim();
+                if (line.includes(':')) {
+                    const delimiterIndex = line.indexOf(':');
+                    const key = line.substring(0, delimiterIndex).trim();
+                    const value = line.substring(delimiterIndex + 1).trim();
+                    
+                    const formDataRow = document.createElement('div');
+                    formDataRow.className = 'param-row';
+                    formDataRow.innerHTML = `
+                        <input type="text" placeholder="${translations[currentLanguage]['form_param_key_placeholder']}" value="${key}">
+                        <input type="text" placeholder="${translations[currentLanguage]['form_param_value_placeholder']}" value="${value}">
+                        <button class="btn-remove" onclick="this.parentElement.remove()">${translations[currentLanguage]['remove_button']}</button>
+                    `;
+                    document.getElementById('form-data-container').appendChild(formDataRow);
+                }
+            });
+        }
+        
+        // Copy request data functionality
+        document.getElementById('copy-request-btn').addEventListener('click', () => {
+            // Collect all request information
+            const method = document.getElementById('method').value;
+            const url = document.getElementById('url').value;
+            
+            // Get query parameters
+            const queryParams = [];
+            const paramRows = document.querySelectorAll('#params-container .param-row');
+            paramRows.forEach(row => {
+                const inputs = row.querySelectorAll('input');
+                if (inputs.length >= 2) {
+                    const key = inputs[0].value.trim();
+                    const value = inputs[1].value.trim();
+                    if (key !== '' && value !== '') {
+                        queryParams.push({ key, value });
+                    }
+                }
+            });
+            
+            // Get request headers
+            const headers = [];
+            const headerRows = document.querySelectorAll('#headers-container .header-row');
+            headerRows.forEach(row => {
+                const inputs = row.querySelectorAll('input');
+                if (inputs.length >= 2) {
+                    const key = inputs[0].value.trim();
+                    const value = inputs[1].value.trim();
+                    if (key !== '' && value !== '') {
+                        headers.push({ key, value });
+                    }
+                }
+            });
+            
+            // Get request body
+            const bodyType = document.getElementById('body-type').value;
+            let requestBody = null;
+            
+            if (bodyType !== 'none') {
+                if (bodyType === 'form') {
+                    // For form data, collect from form data container
+                    const formDataParams = [];
+                    const formDataRows = document.querySelectorAll('#form-data-container .param-row');
+                    formDataRows.forEach(row => {
+                        const inputs = row.querySelectorAll('input');
+                        if (inputs.length >= 2) {
+                            const key = inputs[0].value.trim();
+                            const valueInput = inputs[1];
+                            
+                            if (valueInput.type === 'file') {
+                                // Handle file input
+                                if (valueInput.files.length > 0) {
+                                    formDataParams.push({ key, value: `[File: ${valueInput.files[0].name}]`, type: 'file' });
+                                }
+                            } else {
+                                // Handle text input
+                                const value = valueInput.value.trim();
+                                if (key !== '' && value !== '') {
+                                    formDataParams.push({ key, value, type: 'text' });
+                                }
+                            }
+                        }
+                    });
+                    requestBody = formDataParams;
+                } else {
+                    // For JSON/Raw body, get from textarea
+                    requestBody = document.getElementById('request-body').value;
+                }
+            }
+            
+            // Get response data
+            const responseBodyEl = document.getElementById('response-body');
+            const statusEl = document.getElementById('status');
+            const timeEl = document.getElementById('time');
+            const sizeEl = document.getElementById('size');
+            
+            const responseText = responseBodyEl ? responseBodyEl.textContent : '';
+            const status = statusEl ? statusEl.textContent : '';
+            const time = timeEl ? timeEl.textContent : '';
+            const size = sizeEl ? sizeEl.textContent : '';
+            
+            // Format the data for copying
+            let copyText = `${translations[currentLanguage]['request_method']}: ${method}\n`;
+            copyText += `${translations[currentLanguage]['request_url']}: ${url}\n\n`;
+            
+            if (queryParams.length > 0) {
+                copyText += `${translations[currentLanguage]['query_params']}:\n`;
+                queryParams.forEach(param => {
+                    copyText += `  ${param.key}: ${param.value}\n`;
+                });
+                copyText += `\n`;
+            }
+            
+            if (headers.length > 0) {
+                copyText += `${translations[currentLanguage]['request_headers']}:\n`;
+                headers.forEach(header => {
+                    copyText += `  ${header.key}: ${header.value}\n`;
+                });
+                copyText += `\n`;
+            }
+            
+            if (requestBody) {
+                copyText += `${translations[currentLanguage]['request_body']}:\n`;
+                if (bodyType === 'form') {
+                    requestBody.forEach(param => {
+                        if (param.type === 'file') {
+                            copyText += `  ${param.key}: ${param.value}\n`;
+                        } else {
+                            copyText += `  ${param.key}: ${param.value}\n`;
+                        }
+                    });
+                } else {
+                    copyText += `${requestBody}\n`;
+                }
+                copyText += `\n`;
+            }
+            
+            copyText += `${translations[currentLanguage]['response_data']}:\n`;
+            copyText += `  Status: ${status}\n`;
+            copyText += `  Time: ${time}ms\n`;
+            copyText += `  Size: ${size} bytes\n`;
+            copyText += `  Content:\n${responseText}`;
+            
+            // Use a textarea to copy to clipboard (fallback method)
+            const textArea = document.createElement('textarea');
+            textArea.value = copyText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    // Show success message
+                    alert(translations[currentLanguage]['copied_successfully'] || '已成功复制到剪贴板！');
+                } else {
+                    throw new Error('execCommand failed');
+                }
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+                // Fallback: try modern Clipboard API
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(copyText).then(() => {
+                        alert(translations[currentLanguage]['copied_successfully'] || '已成功复制到剪贴板！');
+                    }).catch(fallbackErr => {
+                        console.error('Fallback clipboard API failed: ', fallbackErr);
+                        alert(translations[currentLanguage]['copy_failed'] || '复制失败，请重试。');
+                    });
+                } else {
+                    alert(translations[currentLanguage]['copy_failed'] || '复制失败，请重试。');
+                }
+            }
+            document.body.removeChild(textArea);
+        });
     </script>
+</body>
+</html>
+
 </body>
 </html>
