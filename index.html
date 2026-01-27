@@ -84,11 +84,11 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #333;
             line-height: 1.6;
             padding: 20px;
             min-height: 100vh;
+            transition: background 0.5s ease; /* 添加平滑过渡效果 */
         }
 
         .container {
@@ -99,6 +99,131 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.15);
             overflow: hidden;
             animation: fadeIn 0.5s ease-in;
+        }
+        
+        /* Floating config button */
+        .config-button {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 0;
+        }
+        
+        .config-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .config-button svg {
+            width: 22px;
+            height: 22px;
+            transition: all 0.3s ease;
+        }
+        
+        .config-button:hover svg {
+            transform: rotate(20deg);
+        }
+        
+        /* Config panel */
+        .config-panel {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 999;
+            width: 250px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            display: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .config-panel.active {
+            display: block;
+        }
+        
+        .config-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .config-panel-header h3 {
+            margin: 0;
+            color: #333;
+            font-size: 16px;
+        }
+        
+        .close-config-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #666;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .config-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .config-option {
+            display: flex;
+            align-items: center;
+        }
+        
+        .config-option label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #333;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .change-bg-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+            margin-top: 5px;
+        }
+        
+        .change-bg-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         @keyframes fadeIn {
@@ -564,6 +689,16 @@
                 font-size: 14px;
             }
 
+            .github-link {
+                padding: 6px 12px;
+                font-size: 13px;
+            }
+
+            .github-link svg {
+                width: 18px;
+                height: 18px;
+            }
+
             body {
                 padding: 10px;
             }
@@ -577,6 +712,11 @@
                 gap: 15px;
                 padding: 20px;
                 text-align: center;
+            }
+            
+            .header-right {
+                justify-content: center;
+                width: 100%;
             }
 
             header h1 {
@@ -745,10 +885,42 @@
             width: 80%;
         }
         
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
         .language-switcher {
             display: flex;
             align-items: center;
             gap: 10px;
+        }
+
+        .github-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .github-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .github-link svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
         }
         
         .language-btn {
@@ -766,15 +938,59 @@
     </style>
 </head>
 <body>
+    <!-- Floating config button -->
+    <button id="configButton" class="config-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19.439 7.85c-.049.322-.144.632-.28.922A4.002 4.002 0 0 1 16 12c-1.82 0-3.395 1.147-3.891 2.856a5.5 5.5 0 1 0 6.782 6.782C20.363 19.395 22 17.82 22 16c0-1.78-.972-3.353-2.561-4.15z"></path>
+            <circle cx="9" cy="9" r="2"></circle>
+        </svg>
+    </button>
+    
+    <!-- Config panel -->
+    <div id="configPanel" class="config-panel">
+        <div class="config-panel-header">
+            <h3>背景配置</h3>
+            <button id="closeConfigPanel" class="close-config-btn">&times;</button>
+        </div>
+        <div class="config-options">
+            <div class="config-option">
+                <label>
+                    <input type="radio" name="bgOption" value="random" checked> 随机主题
+                </label>
+            </div>
+            <div class="config-option">
+                <label>
+                    <input type="radio" name="bgOption" value="static"> 固定主题
+                </label>
+            </div>
+            <div class="config-option">
+                <label>
+                    <input type="checkbox" id="bgAnimation"> 启用动画
+                </label>
+            </div>
+            <div class="config-option">
+                <button id="changeBgBtn" class="change-bg-btn">更换背景</button>
+            </div>
+        </div>
+    </div>
+    
     <div class="container">
         <header>
             <div>
                 <h1 data-i18n="app_title">API 调试工具</h1>
                 <p data-i18n="app_subtitle">无需注册，即开即用的API调试工具</p>
             </div>
-            <div class="language-switcher">
-                <button class="language-btn active" id="zh-lang-btn" data-lang="zh">中文</button>
-                <button class="language-btn" id="en-lang-btn" data-lang="en">English</button>
+            <div class="header-right">
+                <div class="language-switcher">
+                    <button class="language-btn active" id="zh-lang-btn" data-lang="zh">中文</button>
+                    <button class="language-btn" id="en-lang-btn" data-lang="en">English</button>
+                </div>
+                <a href="https://github.com/Cherry-toto/apitool" target="_blank" class="github-link" aria-label="GitHub Repository">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    <span data-i18n="github_star">Star</span>
+                </a>
             </div>
         </header>
         
@@ -1286,7 +1502,8 @@
                 tip_5: "所有功能都在浏览器中运行，数据不会发送到我们的服务器",
                 nav_api_tester: "API测试",
                 nav_documentation: "使用文档",
-                nav_features: "功能特性"
+                nav_features: "功能特性",
+                github_star: "Star"
             },
              en: {
                 page_title: "API Debugging Tool - Online Interface Testing Platform | Free API Debugging Assistant",
@@ -1427,7 +1644,8 @@
                 tip_5: "All functions run in the browser, data is not sent to our servers",
                 nav_api_tester: "API Tester",
                 nav_documentation: "Documentation",
-                nav_features: "Features"
+                nav_features: "Features",
+                github_star: "Star"
             }
         };
 
@@ -2401,6 +2619,157 @@
             }
             document.body.removeChild(textArea);
         });
+    </script>
+    
+    <script>
+        // 动态背景色功能 - 每次刷新时应用适合程序员的舒适渐变色
+        function getRandomComfortableGradient() {
+            // 预定义的程序员友好颜色组合数组
+            const comfortableGradients = [
+                // 深蓝系
+                ['rgba(26, 35, 126, 1)', 'rgba(48, 63, 159, 1)'], // 深蓝渐变
+                ['rgba(38, 50, 56, 1)', 'rgba(55, 71, 79, 1)'],   // 深灰蓝
+                ['rgba(13, 71, 161, 1)', 'rgba(25, 118, 210, 1)'], // 深蓝到亮蓝
+                
+                // 绿色系 (类似终端绿)
+                ['rgba(46, 125, 50, 1)', 'rgba(56, 142, 60, 1)'],  // 深绿渐变
+                ['rgba(29, 136, 94, 1)', 'rgba(19, 124, 84, 1)'],  // 深绿到浅绿
+                ['rgba(0, 96, 100, 1)', 'rgba(0, 137, 123, 1)'],   // 深青绿渐变
+                
+                // 紫色系
+                ['rgba(69, 39, 160, 1)', 'rgba(81, 45, 168, 1)'],  // 深紫渐变
+                ['rgba(111, 66, 193, 1)', 'rgba(101, 31, 160, 1)'], // 紫罗兰渐变
+                ['rgba(49, 27, 146, 1)', 'rgba(69, 39, 160, 1)'],  // 深蓝紫
+                
+                // 深色柔和系
+                ['rgba(38, 50, 56, 1)', 'rgba(69, 90, 100, 1)'],   // 深灰到浅灰
+                ['rgba(54, 71, 81, 1)', 'rgba(84, 110, 122, 1)'],  // 深蓝灰
+                ['rgba(37, 42, 52, 1)', 'rgba(50, 58, 68, 1)'],    // 深黑灰
+                ['rgba(25, 33, 41, 1)', 'rgba(44, 62, 80, 1)'],    // 深黑到海军蓝
+                ['rgba(15, 23, 42, 1)', 'rgba(33, 68, 95, 1)'],    // 深黑到深蓝
+                ['rgba(69, 90, 100, 1)', 'rgba(120, 144, 156, 1)'], // 蓝灰渐变
+            ];
+            
+            // 随机选择一组颜色
+            const randomIndex = Math.floor(Math.random() * comfortableGradients.length);
+            const [color1, color2] = comfortableGradients[randomIndex];
+            
+            // 随机选择渐变方向
+            const directions = ['135deg', '45deg', '90deg', '180deg'];
+            const randomDirection = directions[Math.floor(Math.random() * directions.length)];
+            
+            return `linear-gradient(${randomDirection}, ${color1}, ${color2})`;
+        }
+        
+        // 存储当前背景色状态
+        let currentBackground = null;
+        let bgAnimationEnabled = true;
+        let bgMode = 'random'; // 'random' or 'static'
+        
+        // 页面加载完成后设置随机背景色
+        document.addEventListener('DOMContentLoaded', function() {
+            // 从本地存储恢复设置
+            const savedBgMode = localStorage.getItem('bgMode');
+            const savedBgAnimation = localStorage.getItem('bgAnimation');
+            
+            if (savedBgMode) {
+                bgMode = savedBgMode;
+                document.querySelector(`input[name="bgOption"][value="${bgMode}"]`).checked = true;
+            }
+            
+            if (savedBgAnimation === 'false') {
+                bgAnimationEnabled = false;
+                document.getElementById('bgAnimation').checked = false;
+                // 如果动画被禁用，移除过渡效果
+                document.body.style.transition = 'none';
+            }
+            
+            // 应用背景色
+            if (bgMode === 'random') {
+                document.body.style.background = getRandomComfortableGradient();
+            } else {
+                // 如果是静态模式但没有保存的背景色，则应用随机色
+                const savedBg = localStorage.getItem('currentBackground');
+                if (savedBg) {
+                    document.body.style.background = savedBg;
+                    currentBackground = savedBg;
+                } else {
+                    document.body.style.background = getRandomComfortableGradient();
+                }
+            }
+            
+            // 初始化配置按钮事件
+            initializeConfigPanel();
+        });
+        
+        // 初始化配置面板事件
+        function initializeConfigPanel() {
+            const configButton = document.getElementById('configButton');
+            const configPanel = document.getElementById('configPanel');
+            const closeConfigPanel = document.getElementById('closeConfigPanel');
+            const changeBgBtn = document.getElementById('changeBgBtn');
+            const bgAnimationCheckbox = document.getElementById('bgAnimation');
+            const bgOptions = document.querySelectorAll('input[name="bgOption"]');
+            
+            // 显示/隐藏配置面板
+            configButton.addEventListener('click', function() {
+                configPanel.classList.toggle('active');
+            });
+            
+            // 关闭配置面板
+            closeConfigPanel.addEventListener('click', function() {
+                configPanel.classList.remove('active');
+            });
+            
+            // 更换背景按钮
+            changeBgBtn.addEventListener('click', function() {
+                const newBg = getRandomComfortableGradient();
+                document.body.style.background = newBg;
+                
+                // 如果是静态模式，保存当前背景
+                if (document.querySelector('input[name="bgOption"]:checked').value === 'static') {
+                    currentBackground = newBg;
+                    localStorage.setItem('currentBackground', newBg);
+                }
+            });
+            
+            // 背景动画开关
+            bgAnimationCheckbox.addEventListener('change', function() {
+                bgAnimationEnabled = this.checked;
+                localStorage.setItem('bgAnimation', bgAnimationEnabled);
+                
+                if (bgAnimationEnabled) {
+                    document.body.style.transition = 'background 0.5s ease';
+                } else {
+                    document.body.style.transition = 'none';
+                }
+            });
+            
+            // 背景模式选择
+            bgOptions.forEach(option => {
+                option.addEventListener('change', function() {
+                    bgMode = this.value;
+                    localStorage.setItem('bgMode', bgMode);
+                    
+                    if (bgMode === 'random') {
+                        // 如果切换到随机模式，立即应用新背景
+                        document.body.style.background = getRandomComfortableGradient();
+                    } else if (currentBackground) {
+                        // 如果切换到静态模式，应用之前保存的背景
+                        document.body.style.background = currentBackground;
+                    }
+                });
+            });
+            
+            // 点击外部关闭面板
+            document.addEventListener('click', function(event) {
+                if (!configPanel.contains(event.target) && 
+                    event.target !== configButton &&
+                    !configButton.contains(event.target)) {
+                    configPanel.classList.remove('active');
+                }
+            });
+        }
     </script>
 </body>
 </html>
