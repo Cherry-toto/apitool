@@ -106,15 +106,6 @@ This command simulates the production environment locally for testing the build 
 4. **Save Environment**: Configure common environments and variables in environment management
 5. **Manage History**: View and manage past requests in history records
 
-### Advanced Features
-
-#### Environment Variables
-
-1. Click the "Environment" button in the left navigation bar
-2. Click "New Environment" and enter environment name (e.g., "Development Environment")
-3. Add environment variables such as `BASE_URL`, `API_KEY`, etc.
-4. Reference environment variables in requests using `{{BASE_URL}}/api/users`
-
 #### Request Body Templates
 
 - **JSON Template**: Auto-complete JSON format with syntax highlighting
