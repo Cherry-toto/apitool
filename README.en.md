@@ -1,5 +1,7 @@
 # API Tool - API Tool Usage Documentation
 
+🌐 [中文文档](./README.md) | English Documentation
+
 🚀 **API Tool** - A powerful API testing and management tool built with React and Vite, providing developers with an intuitive and efficient API testing experience.
 
 ---
