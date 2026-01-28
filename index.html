@@ -319,6 +319,144 @@
             }
         }
         
+        /* Custom alert styles */
+        .custom-alert {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .custom-alert.active {
+            display: flex;
+        }
+        
+        .custom-alert-content {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 500px;
+            animation: slideUp 0.3s ease-out;
+            overflow: hidden;
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .custom-alert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+            background: #f8f9fa;
+        }
+        
+        .custom-alert-header h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .close-alert-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .close-alert-btn:hover {
+            background: #e9ecef;
+            color: #333;
+        }
+        
+        .custom-alert-body {
+            padding: 30px 20px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .custom-alert-body p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+            text-align: center;
+        }
+        
+        .custom-alert-footer {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            border-top: 1px solid #e9ecef;
+            background: #f8f9fa;
+        }
+        
+        .alert-btn {
+            padding: 10px 30px;
+            border: none;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .alert-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .custom-alert-content {
+                width: 95%;
+                margin: 0 10px;
+            }
+            
+            .custom-alert-header {
+                padding: 15px;
+            }
+            
+            .custom-alert-body {
+                padding: 20px 15px;
+            }
+            
+            .custom-alert-footer {
+                padding: 15px;
+            }
+        }
+        
         /* Config panel */
         .config-panel {
             position: fixed;
@@ -1155,6 +1293,22 @@
         </div>
     </div>
     
+    <!-- Custom alert modal -->
+    <div id="customAlert" class="custom-alert">
+        <div class="custom-alert-content">
+            <div class="custom-alert-header">
+                <h3 id="alertTitle" data-i18n="alert_title">提示</h3>
+                <button id="closeAlert" class="close-alert-btn">&times;</button>
+            </div>
+            <div class="custom-alert-body">
+                <p id="alertMessage"></p>
+            </div>
+            <div class="custom-alert-footer">
+                <button id="alertOkBtn" class="alert-btn" data-i18n="alert_ok">确定</button>
+            </div>
+        </div>
+    </div>
+    
     <!-- Config panel -->
     <div id="configPanel" class="config-panel">
         <div class="config-panel-header">
@@ -1722,7 +1876,8 @@
                 cookie_reject: "仅必要",
                 export_postman_button: "导出Postman",
                 export_postman_success: "Postman格式文件导出成功！",
-                export_postman_failed: "导出失败，请重试。"
+                export_postman_failed: "导出失败，请重试。",
+                alert_title: "提示"
             },
              en: {
                 page_title: "API Debugging Tool - Online Interface Testing Platform | Free API Debugging Assistant",
@@ -1873,7 +2028,8 @@
                 cookie_reject: "Essential only",
                 export_postman_button: "Export Postman",
                 export_postman_success: "Postman format file exported successfully!",
-                export_postman_failed: "Export failed, please try again."
+                export_postman_failed: "Export failed, please try again.",
+                alert_title: "Alert"
             }
         };
 
@@ -2340,10 +2496,41 @@
                 URL.revokeObjectURL(urlBlob);
                 
                 // Show success message
-                alert(translations[currentLanguage]['export_postman_success']);
+                showAlert(translations[currentLanguage]['export_postman_success']);
             } catch (error) {
                 console.error('Error exporting to Postman:', error);
-                alert(translations[currentLanguage]['export_postman_failed']);
+                showAlert(translations[currentLanguage]['export_postman_failed']);
+            }
+        });
+        
+        // Custom alert functionality
+        const customAlert = document.getElementById('customAlert');
+        const alertMessage = document.getElementById('alertMessage');
+        const alertTitle = document.getElementById('alertTitle');
+        const closeAlertBtn = document.getElementById('closeAlert');
+        const alertOkBtn = document.getElementById('alertOkBtn');
+        
+        // Custom alert function to replace native alert
+        function showAlert(message, title = translations[currentLanguage]['alert_title'] || '提示') {
+            alertMessage.textContent = message;
+            alertTitle.textContent = title;
+            customAlert.classList.add('active');
+        }
+        
+        // Close alert when clicking close button
+        closeAlertBtn.addEventListener('click', () => {
+            customAlert.classList.remove('active');
+        });
+        
+        // Close alert when clicking OK button
+        alertOkBtn.addEventListener('click', () => {
+            customAlert.classList.remove('active');
+        });
+        
+        // Close alert when clicking outside
+        customAlert.addEventListener('click', (e) => {
+            if (e.target === customAlert) {
+                customAlert.classList.remove('active');
             }
         });
         
@@ -2594,7 +2781,7 @@
                 try {
                     return JSON.parse(bodyContent);
                 } catch (e) {
-                    alert(translations[currentLanguage]['json_format_error'] || 'JSON格式错误: ' + e.message);
+                    showAlert(translations[currentLanguage]['json_format_error'] || 'JSON格式错误: ' + e.message);
                     throw e;
                 }
             } else if (bodyType === 'form') {
@@ -2638,7 +2825,7 @@
             const url = document.getElementById('url').value.trim();
             
             if (!url) {
-                alert(translations[currentLanguage]['please_enter_url'] || '请输入URL');
+                showAlert(translations[currentLanguage]['please_enter_url'] || '请输入URL');
                 return;
             }
             
@@ -3031,7 +3218,7 @@
                 const successful = document.execCommand('copy');
                 if (successful) {
                     // Show success message
-                    alert(translations[currentLanguage]['copied_successfully'] || '已成功复制到剪贴板！');
+                    showAlert(translations[currentLanguage]['copied_successfully'] || '已成功复制到剪贴板！');
                 } else {
                     throw new Error('execCommand failed');
                 }
@@ -3040,13 +3227,13 @@
                 // Fallback: try modern Clipboard API
                 if (navigator.clipboard && window.isSecureContext) {
                     navigator.clipboard.writeText(copyText).then(() => {
-                        alert(translations[currentLanguage]['copied_successfully'] || '已成功复制到剪贴板！');
+                        showAlert(translations[currentLanguage]['copied_successfully'] || '已成功复制到剪贴板！');
                     }).catch(fallbackErr => {
                         console.error('Fallback clipboard API failed: ', fallbackErr);
-                        alert(translations[currentLanguage]['copy_failed'] || '复制失败，请重试。');
+                        showAlert(translations[currentLanguage]['copy_failed'] || '复制失败，请重试。');
                     });
                 } else {
-                    alert(translations[currentLanguage]['copy_failed'] || '复制失败，请重试。');
+                    showAlert(translations[currentLanguage]['copy_failed'] || '复制失败，请重试。');
                 }
             }
             document.body.removeChild(textArea);
