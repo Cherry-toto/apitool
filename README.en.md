@@ -1,16 +1,18 @@
-# React + Vite Documentation
+# API Tool - API Tool Usage Documentation
 
-🚀 **API Tool** - A modern web application built with React and Vite, providing you with a fast development experience and excellent performance.
+🚀 **API Tool** - A powerful API testing and management tool built with React and Vite, providing developers with an intuitive and efficient API testing experience.
 
 ---
 
 ## ✨ Key Features
 
-- ⚡ **Fast Refresh**: Experience lightning-fast Hot Module Replacement (HMR) provided by Vite
-- ⚛️ **React 18**: Utilize the latest React features and Hooks
-- 📦 **Zero Configuration**: Ready-to-use pre-configured settings
-- 🔧 **Modern Toolchain**: Includes ESLint, PostCSS and other modern development tools
-- 🚀 **Optimized Build**: Production-ready optimized bundle files
+- 📡 **API Testing**: Support multiple HTTP methods for easy API endpoint testing
+- 📊 **Response Visualization**: Beautiful response data display with support for JSON, XML, and other formats
+- 🔒 **Environment Management**: Support for multiple environment configurations for easy switching between test environments
+- 📋 **Request History**: Automatically save test history for easy repetition and comparison
+- 🎯 **Parameter Management**: Intuitive parameter editing interface supporting query parameters, headers, and request bodies
+- 🚀 **Fast Response**: Built on Vite for a smooth user experience
+- 🌓 **Dark Mode**: Support for light/dark theme switching to protect eyesight
 
 ## 🛠️ Tech Stack
 
@@ -21,14 +23,14 @@
 
 ## 📦 Installation Guide
 
-Follow these simple steps to get started with this project:
+Follow these steps to install and run API Tool:
 
 ```bash
 # Clone the repository
 git clone <repository-url>
 
 # Navigate to project directory
-cd apitest
+cd apitool
 
 # Install dependencies
 npm install
@@ -40,100 +42,171 @@ pnpm install
 
 ## 🚀 Quick Start
 
-### Development Server
-
-Start the development server with live reload:
+### Start Development Server
 
 ```bash
 npm run dev
 ```
 
-This will start the development server at [http://localhost:5173](http://localhost:5173).
+The development server will start at [http://localhost:5173](http://localhost:5173).
 
 ### Build for Production
-
-Create an optimized production build:
 
 ```bash
 npm run build
 ```
 
-This command generates optimized assets in the `dist` folder, ready for deployment.
+The built files will be generated in the `dist` directory, ready for deployment to any static hosting service.
 
 ### Preview Production Build
-
-Preview the production build locally:
 
 ```bash
 npm run preview
 ```
 
-This command serves the production build locally for testing performance and functionality.
+This command simulates the production environment locally for testing the build result.
 
-## 🏗️ Project Structure
+## 🎯 Core Features
 
-```
-apitest/
-├── public/              # Static assets
-│   └── vite.svg         # Vite logo
-├── src/                 # Source code
-│   ├── assets/          # Images and static assets
-│   │   ├── react.svg    # React logo
-│   │   └── vue.svg      # Vue logo (legacy file)
-│   ├── components/      # Reusable components
-│   │   └── HelloWorld.vue # Legacy Vue component
-│   ├── App.jsx          # Main application component
-│   ├── App.vue          # Legacy Vue component
-│   ├── main.js          # Application entry point
-│   ├── style.css        # Global styles
-│   └── App.css          # Component-specific styles
-├── index.html           # HTML template
-├── package.json         # Dependencies and scripts
-└── vite.config.js       # Vite configuration file
-```
+### 1. API Testing
 
-## 🎮 Usage Examples
+- **Supported HTTP Methods**: GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS
+- **Request Parameters**: Support for query parameters, headers, and request bodies
+- **Request Body Formats**: Support for JSON, Form Data, Raw Text
+- **Authentication Methods**: Support for Bearer Token, Basic Auth, API Key, etc.
 
-The starter template includes a basic counter application that demonstrates:
+### 2. Environment Management
 
-- State management using `useState` Hook
-- Event handling
-- Component composition
-- Hot Module Replacement (HMR)
+- **Multi-environment Configuration**: Create and manage multiple test environments (e.g., development, testing, production)
+- **Environment Variables**: Define variables in environments for reference in requests
+- **Environment Switching**: One-click switching between different environments for easy testing
 
-Edit `src/App.jsx` and save to test HMR in real-time.
+### 3. Response Analysis
 
-## 🧪 Testing
+- **Formatted Display**: Automatically format JSON, XML, and other response data
+- **Response Time**: Display API response time for performance analysis
+- **Status Codes**: Clearly show HTTP status codes and their meanings
+- **Headers**: Display response header information
 
-Currently, this template does not include test configuration. To add testing functionality:
+### 4. History Records
+
+- **Automatic Saving**: Automatically save test history without manual recording
+- **History Management**: View, edit, and re-execute historical requests
+- **Search and Filter**: Support filtering history records by URL, method, status code, etc.
+
+## 📖 Usage Guide
+
+### Basic Usage Flow
+
+1. **Add Request**: Click the "New Request" button, enter API URL and select HTTP method
+2. **Configure Parameters**: Add query parameters, headers, or request body as needed
+3. **Send Request**: Click the "Send" button to view the response result
+4. **Save Environment**: Configure common environments and variables in environment management
+5. **Manage History**: View and manage past requests in history records
+
+### Advanced Features
+
+#### Environment Variables
+
+1. Click the "Environment" button in the left navigation bar
+2. Click "New Environment" and enter environment name (e.g., "Development Environment")
+3. Add environment variables such as `BASE_URL`, `API_KEY`, etc.
+4. Reference environment variables in requests using `{{BASE_URL}}/api/users`
+
+#### Request Body Templates
+
+- **JSON Template**: Auto-complete JSON format with syntax highlighting
+- **Form Data**: Intuitive key-value pair editing interface
+- **Raw Text**: Support for custom text formats
+
+## 📚 Examples
+
+### Example 1: Testing GET Request
 
 ```bash
-# Using Jest
-npm install --save-dev jest @testing-library/react
+# Request URL
+https://api.example.com/users
 
-# Using Vitest (recommended with Vite)
-npm install --save-dev vitest @testing-library/react
+# Query Parameters
+?page=1&limit=10
+
+# Expected Response
+{
+  "data": [
+    {"id": 1, "name": "John Doe"},
+    {"id": 2, "name": "Jane Smith"}
+  ],
+  "total": 200,
+  "page": 1
+}
+```
+
+### Example 2: Testing POST Request
+
+```bash
+# Request URL
+https://api.example.com/users
+
+# Request Body (JSON)
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "age": 30
+}
+
+# Expected Response
+{
+  "id": 123,
+  "name": "John Doe",
+  "email": "john@example.com",
+  "age": 30,
+  "created_at": "2024-01-01T00:00:00Z"
+}
+```
+
+## 🔧 Configuration Options
+
+### Project Configuration
+
+- **Proxy Settings**: Configure API proxy in `vite.config.js`
+- **Theme Settings**: Support light/dark theme switching, configurable in app settings
+- **Default Timeout**: Set request timeout, default is 30 seconds
+
+### Environment Variable Configuration
+
+```bash
+# .env file example
+VITE_API_BASE_URL=https://api.example.com
+VITE_APP_TITLE=API Tool
 ```
 
 ## 🚀 Deployment
 
 ### Static Hosting
 
-The built application is ready for deployment to any static hosting service:
+1. Run `npm run build` to build the project
+2. Upload the `dist` directory to any static hosting service
 
-1. Run `npm run build`
-2. Upload the contents of the `dist` folder to your hosting provider
-
-### Recommended Options
+### Recommended Hosting Services
 
 - [Vercel](https://vercel.com/)
 - [Netlify](https://www.netlify.com/)
 - [GitHub Pages](https://pages.github.com/)
 - [Cloudflare Pages](https://pages.cloudflare.com/)
 
+### Local Deployment
+
+```bash
+# Build the project
+npm run build
+
+# Use static file server
+npx serve dist
+```
+
 ## 🤝 Contribution Guidelines
 
-We welcome all contributions! Here's how you can participate:
+We welcome all forms of contributions! Here's how you can participate:
 
 1. Fork this repository
 2. Create a feature branch (`git checkout -b feature/awesome-feature`)
@@ -150,7 +223,7 @@ npm install
 # Start development server
 npm run dev
 
-# Before submitting a PR, ensure everything builds correctly
+# Before submitting PR, ensure the project builds correctly
 npm run build
 ```
 
@@ -168,11 +241,18 @@ If you encounter any issues or have questions:
 
 ## 💡 Notes
 
-- This project was initially configured as a Vue template but has been adapted for React
-- Both Vue and React files exist in the project (legacy components)
-- Main application logic is implemented using React (App.jsx)
-- It is recommended to remove unused Vue files when completing the project
+- This tool is only for development and testing purposes, not for production environments
+- Please comply with the terms of use and restrictions of related APIs
+- For sensitive APIs, ensure you use them in a secure environment
 
 ---
 
-⭐ If this template has been helpful to you, please consider starring the repository!
+⭐ If this tool has been helpful to you, please consider starring the repository!
+
+---
+
+## 📞 Contact Information
+
+- **GitHub**: [https://github.com/username/apitool](https://github.com/username/apitool)
+- **Email**: support@apitool.com
+- **Documentation**: [https://docs.apitool.com](https://docs.apitool.com)

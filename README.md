@@ -1,34 +1,36 @@
-# React + Vite 中文文档
+# API Tool - API 工具使用文档
 
-🚀 **API 工具** - 一款基于 React 和 Vite 构建的现代化 Web 应用程序，为您提供快速开发和卓越性能的体验。
+🚀 **API Tool** - 一款功能强大的API测试和管理工具，基于React和Vite构建，为开发者提供直观、高效的API测试体验。
 
 ---
 
 ## ✨ 主要特性
 
-- ⚡ **快速刷新**: 体验 Vite 提供的闪电般快速热模块替换 (HMR) 功能
-- ⚛️ **React 18**: 利用最新的 React 特性和 Hooks
-- 📦 **零配置**: 开箱即用的预配置设置
-- 🔧 **现代工具链**: 包含 ESLint、PostCSS 等现代开发工具
-- 🚀 **优化构建**: 生产环境就绪的优化打包文件
+- 📡 **API测试**：支持多种HTTP方法，轻松测试API接口
+- 📊 **响应可视化**：美观的响应数据展示，支持JSON、XML等格式
+- � **环境管理**：支持多环境配置，方便切换不同测试环境
+- � **请求历史**：自动保存测试历史，方便重复测试和对比
+- 🎯 **参数管理**：直观的参数编辑界面，支持查询参数、请求头、请求体
+- 🚀 **快速响应**：基于Vite构建，提供流畅的用户体验
+- 🌓 **暗色模式**：支持明暗主题切换，保护视力
 
 ## 🛠️ 技术栈
 
-- **前端框架**: [React](https://react.dev/) v18+
-- **构建工具**: [Vite](https://vite.dev/) v7+
-- **运行时**: [React DOM](https://react.dev/reference/react-dom)
-- **样式处理**: CSS Modules/标准 CSS
+- **前端框架**：[React](https://react.dev/) v18+
+- **构建工具**：[Vite](https://vite.dev/) v7+
+- **运行时**：[React DOM](https://react.dev/reference/react-dom)
+- **样式处理**：CSS Modules/标准 CSS
 
 ## 📦 安装指南
 
-按照以下简单步骤开始使用此项目：
+按照以下步骤安装和运行API Tool：
 
 ```bash
 # 克隆仓库
 git clone <repository-url>
 
 # 进入项目目录
-cd apitest
+cd apitool
 
 # 安装依赖
 npm install
@@ -40,100 +42,171 @@ pnpm install
 
 ## 🚀 快速开始
 
-### 开发服务器
-
-启动支持实时重载的开发服务器：
+### 启动开发服务器
 
 ```bash
 npm run dev
 ```
 
-这将在 [http://localhost:5173](http://localhost:5173) 启动开发服务器。
+开发服务器将在 [http://localhost:5173](http://localhost:5173) 启动。
 
 ### 构建生产版本
-
-创建优化后的生产构建：
 
 ```bash
 npm run build
 ```
 
-此命令会在 `dist` 文件夹中生成经过优化的资源，准备部署。
+构建后的文件将生成在 `dist` 目录中，可直接部署到任何静态托管服务。
 
 ### 预览生产构建
-
-本地预览生产构建：
 
 ```bash
 npm run preview
 ```
 
-此命令在本地服务生产构建，用于测试性能和功能。
+此命令在本地模拟生产环境，用于测试构建结果。
 
-## 🏗️ 项目结构
+## � 核心功能
 
-```
-apitest/
-├── public/              # 静态资源
-│   └── vite.svg         # Vite 标志
-├── src/                 # 源代码
-│   ├── assets/          # 图片和静态资源
-│   │   ├── react.svg    # React 标志
-│   │   └── vue.svg      # Vue 标志 (遗留文件)
-│   ├── components/      # 可复用组件
-│   │   └── HelloWorld.vue # 遗留 Vue 组件
-│   ├── App.jsx          # 主应用程序组件
-│   ├── App.vue          # 遗留 Vue 组件
-│   ├── main.js          # 应用程序入口点
-│   ├── style.css        # 全局样式
-│   └── App.css          # 组件特定样式
-├── index.html           # HTML 模板
-├── package.json         # 依赖项和脚本
-└── vite.config.js       # Vite 配置文件
-```
+### 1. API测试
 
-## 🎮 使用示例
+- **支持的HTTP方法**：GET、POST、PUT、DELETE、PATCH、HEAD、OPTIONS
+- **请求参数**：支持查询参数、请求头、请求体
+- **请求体格式**：支持JSON、Form Data、Raw Text
+- **认证方式**：支持Bearer Token、Basic Auth、API Key等
 
-起始模板包含一个基本的计数器应用程序，演示了：
+### 2. 环境管理
 
-- 使用 `useState` Hook 进行状态管理
-- 事件处理
-- 组件组合
-- 热模块替换 (HMR)
+- **多环境配置**：可创建和管理多个测试环境（如开发、测试、生产）
+- **环境变量**：支持在环境中定义变量，在请求中引用
+- **环境切换**：一键切换不同环境，方便测试
 
-编辑 `src/App.jsx` 并保存以实时测试 HMR。
+### 3. 响应分析
 
-## 🧪 测试
+- **格式化展示**：自动格式化JSON、XML等响应数据
+- **响应时间**：显示API响应时间，便于性能分析
+- **状态码**：清晰显示HTTP状态码和含义
+- **Headers**：展示响应头信息
 
-目前，此模板不包含测试配置。要添加测试功能：
+### 4. 历史记录
+
+- **自动保存**：自动保存测试历史，无需手动记录
+- **历史管理**：查看、编辑、重复执行历史请求
+- **搜索过滤**：支持按URL、方法、状态码等过滤历史记录
+
+## 📖 使用指南
+
+### 基本使用流程
+
+1. **添加请求**：点击"新建请求"按钮，输入API URL和选择HTTP方法
+2. **配置参数**：根据需要添加查询参数、请求头或请求体
+3. **发送请求**：点击"发送"按钮，查看响应结果
+4. **保存环境**：在环境管理中配置常用环境和变量
+5. **管理历史**：在历史记录中查看和管理过往请求
+
+### 高级功能
+
+#### 环境变量
+
+1. 点击左侧导航栏的"环境"按钮
+2. 点击"新建环境"，输入环境名称（如"开发环境"）
+3. 添加环境变量，如 `BASE_URL`、`API_KEY` 等
+4. 在请求中使用 `{{BASE_URL}}/api/users` 引用环境变量
+
+#### 请求体模板
+
+- **JSON模板**：自动补全JSON格式，提供语法高亮
+- **Form Data**：直观的键值对编辑界面
+- **Raw Text**：支持自定义文本格式
+
+## 📚 示例
+
+### 示例1：测试GET请求
 
 ```bash
-# 使用 Jest
-npm install --save-dev jest @testing-library/react
+# 请求URL
+https://api.example.com/users
 
-# 使用 Vitest (推荐与 Vite 配合使用)
-npm install --save-dev vitest @testing-library/react
+# 查询参数
+?page=1&limit=10
+
+# 预期响应
+{
+  "data": [
+    {"id": 1, "name": "John Doe"},
+    {"id": 2, "name": "Jane Smith"}
+  ],
+  "total": 200,
+  "page": 1
+}
+```
+
+### 示例2：测试POST请求
+
+```bash
+# 请求URL
+https://api.example.com/users
+
+# 请求体 (JSON)
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "age": 30
+}
+
+# 预期响应
+{
+  "id": 123,
+  "name": "John Doe",
+  "email": "john@example.com",
+  "age": 30,
+  "created_at": "2024-01-01T00:00:00Z"
+}
+```
+
+## 🔧 配置选项
+
+### 项目配置
+
+- **代理设置**：在 `vite.config.js` 中配置API代理
+- **主题设置**：支持明暗主题切换，可在应用设置中配置
+- **默认超时**：可设置请求超时时间，默认为30秒
+
+### 环境变量配置
+
+```bash
+# .env 文件示例
+VITE_API_BASE_URL=https://api.example.com
+VITE_APP_TITLE=API Tool
 ```
 
 ## 🚀 部署
 
 ### 静态托管
 
-构建的应用程序已准备好部署到任何静态托管服务：
+1. 运行 `npm run build` 构建项目
+2. 将 `dist` 目录上传到任何静态托管服务
 
-1. 运行 `npm run build`
-2. 将 `dist` 文件夹内容上传到您的托管提供商
-
-### 推荐选项
+### 推荐托管服务
 
 - [Vercel](https://vercel.com/)
 - [Netlify](https://www.netlify.com/)
 - [GitHub Pages](https://pages.github.com/)
 - [Cloudflare Pages](https://pages.cloudflare.com/)
 
+### 本地部署
+
+```bash
+# 构建项目
+npm run build
+
+# 使用静态文件服务器
+npx serve dist
+```
+
 ## 🤝 贡献指南
 
-我们欢迎各种贡献！以下是您可以参与的方式：
+我们欢迎所有形式的贡献！以下是参与项目的步骤：
 
 1. Fork 此仓库
 2. 创建功能分支 (`git checkout -b feature/awesome-feature`)
@@ -150,7 +223,7 @@ npm install
 # 启动开发服务器
 npm run dev
 
-# 提交 PR 前，请确保一切都能正常构建
+# 提交PR前，确保项目能正常构建
 npm run build
 ```
 
@@ -168,11 +241,18 @@ npm run build
 
 ## 💡 注意事项
 
-- 此项目最初配置为 Vue 模板，但已适配为 React
-- 项目中同时存在 Vue 和 React 的文件 (遗留组件)
-- 主要应用程序逻辑使用 React 实现 (App.jsx)
-- 建议在完成项目时移除未使用的 Vue 文件
+- 此工具仅用于开发和测试目的，请勿用于生产环境
+- 请遵守相关API的使用条款和限制
+- 对于敏感API，请确保在安全环境中使用
 
 ---
 
-⭐ 如果此模板对您有帮助，请考虑给仓库点星！
+⭐ 如果此工具对您有帮助，请考虑给仓库点星！
+
+---
+
+## 📞 联系方式
+
+- **GitHub**：[https://github.com/username/apitool](https://github.com/username/apitool)
+- **Email**：support@apitool.com
+- **文档**：[https://docs.apitool.com](https://docs.apitool.com)
