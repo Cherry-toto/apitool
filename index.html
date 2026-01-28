@@ -3,23 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="max-age=31536000, public">
+    <meta http-equiv="Pragma" content="cache">
+    <meta http-equiv="Expires" content="31536000">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <title data-i18n="page_title">API调试工具 - 在线接口测试平台 | 免费API调试助手</title>
-    <meta name="description" content="" data-i18n="page_description" data-i18n-attr="content">
-    <meta name="keywords" content="" data-i18n="page_keywords" data-i18n-attr="content">
+    <meta name="description" content="专业的在线API调试工具，无需注册即可使用。支持GET/POST/PUT/DELETE等多种请求方法，可自定义参数、请求头和请求体。快速测试API接口，查看响应结果、状态码、响应时间等详细信息。" data-i18n="page_description" data-i18n-attr="content">
+    <meta name="keywords" content="API调试工具,在线API测试,接口测试工具,API接口调试,HTTP请求测试,免费API工具,API调试助手,接口测试平台" data-i18n="page_keywords" data-i18n-attr="content">
     <meta name="author" content="API Tool">
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow">
-    <meta property="og:title" content="" data-i18n="og_title" data-i18n-attr="content">
-    <meta property="og:description" content="" data-i18n="og_description" data-i18n-attr="content">
+    <meta property="og:title" content="API调试工具 - 在线接口测试平台 | 免费API调试助手" data-i18n="og_title" data-i18n-attr="content">
+    <meta property="og:description" content="专业的在线API调试工具，无需注册即可使用。支持GET/POST/PUT/DELETE等多种请求方法，可自定义参数、请求头和请求体。快速测试API接口，查看响应结果、状态码、响应时间等详细信息。" data-i18n="og_description" data-i18n-attr="content">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.apitool.top/api-tool">
+    <meta property="og:url" content="https://www.apitool.top">
     <meta property="og:site_name" content="API Debugging Tool">
     <meta property="og:locale" content="zh_CN">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="" data-i18n="twitter_title" data-i18n-attr="content">
-    <meta name="twitter:description" content="" data-i18n="twitter_description" data-i18n-attr="content">
+    <meta name="twitter:title" content="API调试工具 - 在线接口测试平台 | 免费API调试助手" data-i18n="twitter_title" data-i18n-attr="content">
+    <meta name="twitter:description" content="专业的在线API调试工具，无需注册即可使用。支持GET/POST/PUT/DELETE等多种请求方法，可自定义参数、请求头和请求体。快速测试API接口，查看响应结果、状态码、响应时间等详细信息。" data-i18n="twitter_description" data-i18n-attr="content">
     <meta name="twitter:site" content="@apidebugtool">
+    <link rel="icon" href="public/favicon.ico">
     <link rel="canonical" href="https://www.apitool.top/api-tool">
+    <link rel="alternate" hreflang="zh-CN" href="https://www.apitool.top/api-tool?lang=zh" />
+    <link rel="alternate" hreflang="en" href="https://www.apitool.top/api-tool?lang=en" />
+    <link rel="alternate" hreflang="x-default" href="https://www.apitool.top/api-tool" />
     <meta name="theme-color" content="#667eea">
     <meta name="application-name" content="API Debugging Tool">
     <meta name="apple-mobile-web-app-title" content="API Debugging Tool">
@@ -55,7 +65,7 @@
             "支持中英文双语界面",
             "一键复制请求功能，方便与后端工程师沟通"
         ],
-        "url": "https://www.apitool.top/api-tool",
+        "url": "https://www.apitool.top",
         "datePublished": "2026-01-27",
         "dateModified": "2026-01-27",
         "inLanguage": ["zh-CN", "en"],
@@ -68,7 +78,7 @@
             "bestRating": "5",
             "worstRating": "1"
         },
-        "screenshot": "https://www.apitool.top/api-tool/screenshot.png"
+        "screenshot": "public/screenshot.png"
     }
     </script>
     <style>
@@ -108,8 +118,8 @@
             right: 20px;
             transform: translateY(-50%);
             z-index: 1000;
-            width: 50px;
-            height: 50px;
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -131,13 +141,54 @@
         }
         
         .config-button svg {
-            width: 22px;
-            height: 22px;
+            width: 24px;
+            height: 24px;
             transition: all 0.3s ease;
         }
         
         .config-button:hover svg {
             transform: rotate(20deg);
+        }
+        
+        /* Back to top button */
+        .back-to-top-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+            padding: 0;
+        }
+        
+        .back-to-top-btn.active {
+            display: flex;
+        }
+        
+        .back-to-top-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .back-to-top-btn svg {
+            width: 24px;
+            height: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top-btn:hover svg {
+            transform: translateY(-2px);
         }
         
         /* Config panel */
@@ -316,7 +367,6 @@
             color: white;
             border: none;
             cursor: pointer;
-            min-width: 80px;
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(102, 126, 234, 0.2);
@@ -940,9 +990,16 @@
 <body>
     <!-- Floating config button -->
     <button id="configButton" class="config-button">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19.439 7.85c-.049.322-.144.632-.28.922A4.002 4.002 0 0 1 16 12c-1.82 0-3.395 1.147-3.891 2.856a5.5 5.5 0 1 0 6.782 6.782C20.363 19.395 22 17.82 22 16c0-1.78-.972-3.353-2.561-4.15z"></path>
-            <circle cx="9" cy="9" r="2"></circle>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+    </button>
+    
+    <!-- Back to top button -->
+    <button id="backToTopBtn" class="back-to-top-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m18 15-6-6-6 6"/>
         </svg>
     </button>
     
@@ -1694,13 +1751,30 @@
         // Current language
         let currentLanguage = getBrowserLanguage();
 
+        // Get language from URL parameter
+        function getLanguageFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            if (langParam === 'zh' || langParam === 'en') {
+                return langParam;
+            }
+            return null;
+        }
+
         // Initialize language
         function initLanguage() {
-            // Set the initial language based on browser preference
-            if (!localStorage.getItem('preferredLanguage')) {
+            // First check URL parameter
+            const urlLang = getLanguageFromUrl();
+            if (urlLang) {
+                currentLanguage = urlLang;
                 localStorage.setItem('preferredLanguage', currentLanguage);
             } else {
-                currentLanguage = localStorage.getItem('preferredLanguage');
+                // Then check local storage
+                if (!localStorage.getItem('preferredLanguage')) {
+                    localStorage.setItem('preferredLanguage', currentLanguage);
+                } else {
+                    currentLanguage = localStorage.getItem('preferredLanguage');
+                }
             }
             
             // Update the UI based on the selected language
@@ -1952,15 +2026,43 @@
         zhLangBtn.addEventListener('click', () => {
             updateLanguage('zh');
             updateActiveLanguageButton('zh');
+            // Update URL with language parameter
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', 'zh');
+            window.history.pushState({ path: url.href }, '', url.href);
         });
 
         enLangBtn.addEventListener('click', () => {
             updateLanguage('en');
             updateActiveLanguageButton('en');
+            // Update URL with language parameter
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', 'en');
+            window.history.pushState({ path: url.href }, '', url.href);
         });
 
         // Initialize the language on page load
         document.addEventListener('DOMContentLoaded', initLanguage);
+        
+        // Back to top button functionality
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        
+        // Show/hide back to top button based on scroll position
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('active');
+            } else {
+                backToTopBtn.classList.remove('active');
+            }
+        });
+        
+        // Scroll to top when button is clicked
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
         
 
         
