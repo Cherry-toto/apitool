@@ -10,7 +10,6 @@
 
 - 📡 **API Testing**: Support multiple HTTP methods for easy API endpoint testing
 - 📊 **Response Visualization**: Beautiful response data display with support for JSON, XML, and other formats
-- 🔒 **Environment Management**: Support for multiple environment configurations for easy switching between test environments
 - 📋 **Request History**: Automatically save test history for easy repetition and comparison
 - 🎯 **Parameter Management**: Intuitive parameter editing interface supporting query parameters, headers, and request bodies
 - 🚀 **Fast Response**: Built on Vite for a smooth user experience
@@ -77,20 +76,14 @@ This command simulates the production environment locally for testing the build 
 - **Request Body Formats**: Support for JSON, Form Data, Raw Text
 - **Authentication Methods**: Support for Bearer Token, Basic Auth, API Key, etc.
 
-### 2. Environment Management
-
-- **Multi-environment Configuration**: Create and manage multiple test environments (e.g., development, testing, production)
-- **Environment Variables**: Define variables in environments for reference in requests
-- **Environment Switching**: One-click switching between different environments for easy testing
-
-### 3. Response Analysis
+### 2. Response Analysis
 
 - **Formatted Display**: Automatically format JSON, XML, and other response data
 - **Response Time**: Display API response time for performance analysis
 - **Status Codes**: Clearly show HTTP status codes and their meanings
 - **Headers**: Display response header information
 
-### 4. History Records
+### 3. History Records
 
 - **Automatic Saving**: Automatically save test history without manual recording
 - **History Management**: View, edit, and re-execute historical requests
@@ -103,8 +96,7 @@ This command simulates the production environment locally for testing the build 
 1. **Add Request**: Click the "New Request" button, enter API URL and select HTTP method
 2. **Configure Parameters**: Add query parameters, headers, or request body as needed
 3. **Send Request**: Click the "Send" button to view the response result
-4. **Save Environment**: Configure common environments and variables in environment management
-5. **Manage History**: View and manage past requests in history records
+4. **Manage History**: View and manage past requests in history records
 
 #### Request Body Templates
 
