@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: "颜色工具 - HEX/RGB/HSL/HSV颜色转换器",
     description: "在线颜色转换工具，支持HEX、RGB、HSL、HSV格式之间的相互转换，提供颜色选择器和调色板生成功能",
     type: "website",
-    url: "https://your-domain.com/color-tools",
+    url: "https://apitool.top/color-tools",
   },
   twitter: {
     card: "summary_large_image",

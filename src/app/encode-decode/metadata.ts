@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: "编码/解码工具 - Base64/URL/HTML编码转换器",
     description: "在线编码解码工具，支持Base64、URL、HTML等常见编码格式的相互转换，帮助开发者处理数据编码问题",
     type: "website",
-    url: "https://your-domain.com/encode-decode",
+    url: "https://apitool.top/encode-decode",
   },
   twitter: {
     card: "summary_large_image",

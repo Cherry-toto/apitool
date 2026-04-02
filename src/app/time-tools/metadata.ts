@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: "时间转化工具 - 时间戳转换与全球时间查询",
     description: "在线时间转化工具，支持时间戳与日期相互转换，提供全球主要城市时间查询",
     type: "website",
-    url: "https://your-domain.com/time-tools",
+    url: "https://apitool.top/time-tools",
   },
   twitter: {
     card: "summary_large_image",

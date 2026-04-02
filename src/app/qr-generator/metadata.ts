@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: "二维码生成器 - 在线QR码制作与定制工具",
     description: "在线二维码生成工具，支持文本、WiFi、联系人、邮箱、地理位置等多种内容类型的二维码生成",
     type: "website",
-    url: "https://your-domain.com/qr-generator",
+    url: "https://apitool.top/qr-generator",
   },
   twitter: {
     card: "summary_large_image",

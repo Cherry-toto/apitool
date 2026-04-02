@@ -10,6 +10,9 @@ import { Slider } from "@/components/ui/slider";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Copy, RefreshCw, Key, Dice5 } from "lucide-react";
 import ToolLayout from "@/components/tool-layout";
+import { metadata } from "./metadata";
+
+export { metadata };
 
 export default function GeneratorsPage() {
   const [passwordLength, setPasswordLength] = useState(16);

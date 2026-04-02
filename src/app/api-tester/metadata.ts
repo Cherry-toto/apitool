@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: "API 测试器 - 在线HTTP请求测试工具",
     description: "强大的在线API测试工具，支持GET、POST、PUT、DELETE等HTTP请求方法，可自定义请求头和请求体",
     type: "website",
-    url: "https://your-domain.com/api-tester",
+    url: "https://apitool.top/api-tester",
   },
   twitter: {
     card: "summary_large_image",

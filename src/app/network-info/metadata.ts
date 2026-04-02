@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: "网络信息工具 - IP地址查询与设备信息检测",
     description: "在线网络信息检测工具，可查询IP地址、浏览器信息、操作系统、设备类型等详细网络信息",
     type: "website",
-    url: "https://your-domain.com/network-info",
+    url: "https://apitool.top/network-info",
   },
   twitter: {
     card: "summary_large_image",
