@@ -214,7 +214,7 @@ export default function GeneratorsPage() {
                       id="min"
                       type="number"
                       value={minRandom}
-                      onChange={(e) => setMinRandom(e.target.value)}
+                      onChange={(e) => setMinRandom(Number(e.target.value))}
                     />
                   </div>
 
@@ -224,7 +224,7 @@ export default function GeneratorsPage() {
                       id="max"
                       type="number"
                       value={maxRandom}
-                      onChange={(e) => setMaxRandom(e.target.value)}
+                      onChange={(e) => setMaxRandom(Number(e.target.value))}
                     />
                   </div>
                 </div>
