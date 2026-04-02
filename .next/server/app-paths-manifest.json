@@ -1,0 +1,10 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/color-tools/page": "app/color-tools/page.js",
+  "/json-tools/page": "app/json-tools/page.js",
+  "/network-info/page": "app/network-info/page.js",
+  "/encode-decode/page": "app/encode-decode/page.js",
+  "/api-tester/page": "app/api-tester/page.js",
+  "/qr-generator/page": "app/qr-generator/page.js",
+  "/page": "app/page.js"
+}
