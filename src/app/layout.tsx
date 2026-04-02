@@ -1,6 +1,8 @@
 import "@/styles/globals.css";
 import type { Metadata } from "next";
+import Script from "next/script";
 import { ThemeProvider } from "@/contexts/theme-context";
+import { CookieConsent } from "@/components/cookie-consent";
 
 export const metadata: Metadata = {
   title: {
@@ -65,7 +67,16 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <body className="font-sans">
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+          <CookieConsent />
+        </ThemeProvider>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1475305512915596"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

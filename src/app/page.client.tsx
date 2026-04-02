@@ -80,7 +80,24 @@ export default function Home() {
         </main>
         
         <footer className="py-4 px-6 border-t dark:border-gray-700 text-center text-sm text-gray-500 dark:text-gray-400">
-          <p>免费开源工具 | Made with ❤️ for developers</p>
+          <div className="space-y-2">
+            <p>免费开源工具 | Made with ❤️ for developers</p>
+            <div className="flex justify-center gap-4">
+              <a
+                href="/privacy"
+                className="hover:text-primary transition-colors"
+              >
+                隐私政策
+              </a>
+              <span>•</span>
+              <a
+                href="/cookies"
+                className="hover:text-primary transition-colors"
+              >
+                Cookie 政策
+              </a>
+            </div>
+          </div>
         </footer>
       </div>
     </div>

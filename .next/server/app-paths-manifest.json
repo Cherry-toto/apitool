@@ -1,6 +1,8 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
   "/page": "app/page.js",
-  "/generators/page": "app/generators/page.js",
   "/time-tools/page": "app/time-tools/page.js",
-  "/network-info/page": "app/network-info/page.js"
+  "/color-tools/page": "app/color-tools/page.js",
+  "/network-info/page": "app/network-info/page.js",
+  "/json-tools/page": "app/json-tools/page.js"
 }
