@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "zh_CN",
-    url: "https://your-domain.com",
+    url: "https://apitool.top",
     title: "APITool - 免费开发者实用工具集",
     description: "现代开发者在线工具集合，包含JSON格式化、API测试、编码解码、二维码生成等多种实用工具",
     siteName: "APITool",

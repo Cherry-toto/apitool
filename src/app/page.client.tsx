@@ -27,6 +27,8 @@ export default function Home() {
       "二维码生成": "/qr-generator",
       "网络信息": "/network-info",
       "颜色工具": "/color-tools",
+      "密码与随机数生成": "/generators",
+      "时间转化工具": "/time-tools",
     };
     
     const route = toolRoutes[toolName] || "/";
@@ -60,6 +62,8 @@ export default function Home() {
                 { title: "二维码生成", desc: "生成和解析二维码", icon: "📱" },
                 { title: "网络信息", desc: "IP 查询、网络诊断工具", icon: "🌐" },
                 { title: "颜色工具", desc: "颜色选择器、调色板生成", icon: "🎨" },
+                { title: "密码与随机数生成", desc: "生成安全的密码和随机数", icon: "🔑" },
+                { title: "时间转化工具", desc: "时间戳转换、全球时间查询", icon: "⏰" },
               ].map((item, index) => (
                 <Card key={index}>
                   <CardHeader>
