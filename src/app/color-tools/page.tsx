@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Copy, Palette, Droplets } from 'lucide-react';
-import ToolLayout from '@/components/tool-layout';
 import { hexToRgb, rgbToHex, rgbToHsl, hslToRgb, rgbToHsv, hsvToRgb } from '@/utils/color-utils';
+import ToolLayout from "@/components/tool-layout";
 
 interface ColorFormats {
   hex: string;

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Copy, Info, Globe, Monitor, Smartphone } from 'lucide-react';
-import ToolLayout from '@/components/tool-layout';
+import ToolLayout from "@/components/tool-layout";
 import ClientOnly from '@/components/client-only-info';
 
 interface NetworkInfo {

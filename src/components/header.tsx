@@ -57,7 +57,7 @@ export const Header = ({ sidebarCollapsed, toggleSidebar }: HeaderProps) => {
             aria-label="GitHub"
           >
             <a
-              href="https://github.com/apitool/apitool"
+              href="https://github.com/Cherry-toto/apitool"
               target="_blank"
               rel="noopener noreferrer"
             >
