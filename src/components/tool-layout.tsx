@@ -3,6 +3,7 @@
 import { Sidebar } from "@/components/sidebar";
 import { Header } from "@/components/header";
 import { useTheme } from "@/contexts/theme-context";
+import { useSidebar } from "@/contexts/sidebar-context";
 
 interface ToolLayoutProps {
   children: React.ReactNode;
@@ -12,13 +13,14 @@ interface ToolLayoutProps {
 
 export default function ToolLayout({ children, title, description }: ToolLayoutProps) {
   const { theme } = useTheme();
+  const { isCollapsed, toggleSidebar } = useSidebar();
 
   return (
     <div className={`flex min-h-screen ${theme === "dark" ? "dark bg-gray-900" : "bg-gray-50"}`}>
-      <Sidebar />
+      <Sidebar isCollapsed={isCollapsed} onCollapseToggle={toggleSidebar} />
       
-      <div className="flex-1 flex flex-col">
-        <Header />
+      <div className={`flex-1 flex flex-col ${isCollapsed ? 'ml-16' : 'ml-64 lg:ml-56 xl:ml-60'}`}>
+        <Header sidebarCollapsed={isCollapsed} toggleSidebar={toggleSidebar} />
         
         <main className="flex-1 p-6 overflow-y-auto">
           <div className="max-w-7xl mx-auto">

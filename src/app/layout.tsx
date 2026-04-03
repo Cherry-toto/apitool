@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import type { Metadata } from "next";
 import Script from "next/script";
 import { ThemeProvider } from "@/contexts/theme-context";
+import { SidebarProvider } from "@/contexts/sidebar-context";
 import { CookieConsent } from "@/components/cookie-consent";
 
 export const metadata: Metadata = {
@@ -68,8 +69,10 @@ export default function RootLayout({
     <html lang="zh-CN">
       <body className="font-sans">
         <ThemeProvider>
-          {children}
-          <CookieConsent />
+          <SidebarProvider>
+            {children}
+            <CookieConsent />
+          </SidebarProvider>
         </ThemeProvider>
         <Script
           async

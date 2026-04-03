@@ -22,9 +22,9 @@ export const Sidebar = ({ isCollapsed = false, onCollapseToggle }: SidebarProps)
   ];
 
   return (
-    <aside className={`fixed inset-y-0 left-0 z-10 bg-background border-r transform transition-transform duration-300 ease-in-out ${
-      isCollapsed ? '-translate-x-full lg:translate-x-0 lg:w-16' : 'translate-x-0 w-64'
-    } lg:static lg:translate-x-0 lg:flex lg:flex-col h-full md:-translate-x-full lg:left-0`}>
+    <aside className={`fixed inset-y-0 left-0 z-10 bg-background border-r transform transition-all duration-300 ease-in-out ${
+      isCollapsed ? 'md:-translate-x-full lg:translate-x-0 lg:w-16' : 'translate-x-0 w-64'
+    } lg:static lg:translate-x-0 lg:flex lg:flex-col h-full lg:left-0`}>
       <div className="flex h-full max-h-screen flex-col gap-2">
         <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
           {!isCollapsed ? (

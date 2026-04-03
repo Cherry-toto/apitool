@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,15 +7,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Sidebar } from "@/components/sidebar";
 import { Header } from "@/components/header";
 import { useTheme } from "@/contexts/theme-context";
+import { useSidebar } from "@/contexts/sidebar-context";
 
 export default function Home() {
   const { theme } = useTheme();
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const { isCollapsed, toggleSidebar } = useSidebar();
   const router = useRouter();
-
-  const toggleSidebar = () => {
-    setSidebarCollapsed(!sidebarCollapsed);
-  };
 
   const navigateToTool = (toolName: string) => {
     // Convert Chinese tool name to English route path
@@ -37,10 +33,10 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen">
-      <Sidebar isCollapsed={sidebarCollapsed} onCollapseToggle={toggleSidebar} />
+      <Sidebar isCollapsed={isCollapsed} onCollapseToggle={toggleSidebar} />
       
-      <div className={`flex-1 flex flex-col `}>
-        <Header sidebarCollapsed={sidebarCollapsed} toggleSidebar={toggleSidebar} />
+      <div className={`flex-1 flex flex-col ${isCollapsed ? 'ml-16' : 'ml-64 lg:ml-56 xl:ml-60'}`}>
+        <Header isCollapsed={isCollapsed} toggleSidebar={toggleSidebar} />
         
         <main className="flex-1 p-6 overflow-y-auto">
           <div className="max-w-7xl mx-auto">

@@ -1,0 +1,21 @@
+{
+  "name": "APITool - 免费开发者实用工具集",
+  "short_name": "APITool",
+  "description": "现代开发者在线工具集合，包含JSON格式化、API测试、编码解码、二维码生成、网络信息查询等多种实用工具",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
