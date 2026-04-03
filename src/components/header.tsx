@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 import { useTheme } from "@/contexts/theme-context";
 
 interface HeaderProps {
-  sidebarCollapsed?: boolean;
+  isCollapsed?: boolean;
   toggleSidebar?: () => void;
 }
 
-export const Header = ({ sidebarCollapsed, toggleSidebar }: HeaderProps) => {
+export const Header = ({ isCollapsed, toggleSidebar }: HeaderProps) => {
   const { theme, toggleTheme } = useTheme();
 
   return (
